@@ -2,6 +2,8 @@ const router = require('express').Router();
 const User = require('../models/User.js');
 const cryptojs = require('crypto-js')
 const jwt = require('jsonwebtoken')
+const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 
 // REGISTER
 router.post("/register", async (req, res) => {
@@ -51,5 +53,88 @@ router.post("/login", async (req, res) => {
         console.error(error);
             res.status(500).json({ error: "Internal server error." });
     }
+});
+
+router.post("/forgotPassword", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ error: "User with this email does not exist." });
+    }
+
+    const token = crypto.randomBytes(20).toString("hex");
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+    await user.save();
+
+    const transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "priyankaa.250303@gmail.com",
+        pass: "akka2505$",
+      },
+    });
+
+    const mailOptions = {
+      to: user.email,
+      from: "priyankaa.250303@gmail.com",
+      subject: "Password Reset",
+      text:
+        "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
+        "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
+        "http://" +
+        "localhost:5001"+
+        "/resetPassword/" +
+        token +
+        "\n\n" +
+        "If you did not request this, please ignore this email and your password will remain unchanged.\n",
+    };
+
+    transporter.sendMail(mailOptions, function (err) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({ error: "Failed to send email." });
+      }
+      res
+        .status(200)
+        .json({
+          message:
+            "An e-mail has been sent to " +
+            user.email +
+            " with further instructions.",
+        });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+router.post("/resetPassword/:token", async (req, res) => {
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ error: "Password reset token is invalid or has expired." });
+    }
+
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+
+    await user.save();
+
+    res.status(200).json({ message: "Password has been reset." });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error." });
+  }
 });
 module.exports = router;

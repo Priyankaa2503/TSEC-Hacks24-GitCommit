@@ -73,21 +73,21 @@ router.post("/forgotPassword", async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "priyankaa.250303@gmail.com",
-        pass: "akka2505$",
+        user: "priyankaar25@gmail.com",
+        pass: "xyqj ifjp oqph jemj",
       },
     });
 
     const mailOptions = {
+      from: "priyankaar25@gmail.com",
       to: user.email,
-      from: "priyankaa.250303@gmail.com",
       subject: "Password Reset",
       text:
         "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
         "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
         "http://" +
-        "localhost:5001"+
-        "/resetPassword/" +
+        "localhost:5001" +
+        "/api/auth/resetPassword/" +
         token +
         "\n\n" +
         "If you did not request this, please ignore this email and your password will remain unchanged.\n",
@@ -125,7 +125,10 @@ router.post("/resetPassword/:token", async (req, res) => {
         .json({ error: "Password reset token is invalid or has expired." });
     }
 
-    user.password = req.body.password;
+    user.password = cryptojs.AES.encrypt(
+      req.body.password,
+      process.env.SECRET_KEY
+    ).toString();
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
 

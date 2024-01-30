@@ -67,7 +67,7 @@ const Blur = (props) => {
   );
 };
 
-export default function Login() {
+export default function resetPass() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -76,14 +76,12 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5001/auth/login", {
+      const res = await axios.post("http://localhost:5001/auth/resetPassword", {
         email: email,
         password: password,
       });
       console.log(res);
       if (res.status === 200) {
-        router.push("/home");
-        localStorage.setItem("token", res.data.accessToken);
         console.log("success");
       }
     } catch (error) {
@@ -99,7 +97,6 @@ export default function Login() {
     <Flex
       justifyContent="center"
       alignItems="center"
-      direction={"column"}
       style={{ minHeight: "100vh" }}
     >
       <Flex
@@ -116,23 +113,9 @@ export default function Login() {
           maxW={{ lg: "lg" }}
         >
           <Stack spacing={4}>
-            <Heading
-              color={"gray.800"}
-              lineHeight={1.1}
-              fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
-            >
-              Login
-              <Text
-                as={"span"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                bgClip="text"
-              >
-                !
-              </Text>
-            </Heading>
             <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
-              We’re looking for amazing engineers just like you! Become a part
-              of our rockstar engineering team and skyrocket your career!
+              Enter your email address and we'll send you a link to reset your
+              password.
             </Text>
           </Stack>
           <Box as={"form"} onSubmit={handleSubmit} mt={10}>
@@ -147,25 +130,7 @@ export default function Login() {
                   color: "gray.500",
                 }}
               />
-              <Input
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
-              <Input
-                placeholder="+91  ___________"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
+
               <Button
                 fontFamily={"heading"}
                 mt={8}
@@ -178,24 +143,12 @@ export default function Login() {
                   boxShadow: "xl",
                 }}
               >
-                Login
+                Reset Password
               </Button>
             </Stack>
           </Box>
-          <p>Forgot Password? </p>
-          <Button
-            onClick={() => {
-              router.push("/auth/forgot-password");
-            }}
-            fontFamily={"heading"}
-            bg={"gray.200"}
-            color={"gray.800"}
-          >
-            Forgot Password
-          </Button>
         </Stack>
       </Flex>
-
       <Blur
         position={"absolute"}
         top={-10}

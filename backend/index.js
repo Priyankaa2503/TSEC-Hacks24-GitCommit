@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
 const app = express();
 const userRoute = require("./routes/user.js");
 const authRoute = require("./routes/auth.js");
@@ -9,6 +10,7 @@ const productRoute = require("./routes/product.js");
 // const orderRoute = require("./routes/order.js");
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 /* MONGOOSE SETUP */
 const PORT = 5001 || 9000;
 mongoose
@@ -24,8 +26,8 @@ mongoose
   })
   .catch((error) => console.log(`${error} did not connect`));
 
-app.use("/api/user", userRoute);
-app.use("/api/auth", authRoute);
-app.use("/api/products", productRoute);
+app.use("/user", userRoute);
+app.use("/auth", authRoute);
+app.use("/products", productRoute);
 // app.use("/api/cart", cartRoute);
 // app.use("/api/order", orderRoute);

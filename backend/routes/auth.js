@@ -7,24 +7,28 @@ const crypto = require("crypto");
 
 // REGISTER
 router.post("/register", async (req, res) => {
-    const newUser = new User({
-        // username: req.body.username,
-        email: req.body.email,
-        password: cryptojs.AES.encrypt(req.body.password,process.env.SECRET_KEY).toString()
-    });
+  const newUser = new User({
+    // username: req.body.username,
+    email: req.body.email,
+    password: cryptojs.AES.encrypt(
+      req.body.password,
+      process.env.SECRET_KEY
+    ).toString(),
+  });
 
-    try {
-        const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
-    } catch (error) {
-        console.error(error);
-        // Check for specific error types and respond accordingly
-        if (error.code === 11000) { // MongoDB duplicate key error (unique constraint)
-            res.status(400).json({ error: "Username or email already exists." });
-        } else {
-            res.status(500).json({ error: "Internal server error." });
-        }
+  try {
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (error) {
+    console.error(error);
+    // Check for specific error types and respond accordingly
+    if (error.code === 11000) {
+      // MongoDB duplicate key error (unique constraint)
+      res.status(400).json({ error: "Username or email already exists." });
+    } else {
+      res.status(500).json({ error: "Internal server error." });
     }
+  }
 });
 //LOGIN
 router.post("/login", async (req, res) => {
@@ -86,8 +90,8 @@ router.post("/forgotPassword", async (req, res) => {
         "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
         "Please click on the following link, or paste this into your browser to complete the process:\n\n" +
         "http://" +
-        "localhost:5001" +
-        "/api/auth/resetPassword/" +
+        "localhost:3000" +
+        "/auth/reset-password/" +
         token +
         "\n\n" +
         "If you did not request this, please ignore this email and your password will remain unchanged.\n",

@@ -121,6 +121,7 @@
   
   #you .message-content {
     justify-content: flex-start;
+    background-color: green;
   }
   
   #you .message-meta {
@@ -130,7 +131,7 @@
   
   #other {
     justify-content: flex-end;
-    width: 50%;
+    /* width: 50%; */
   }
   
   #other .message-content {

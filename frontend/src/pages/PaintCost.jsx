@@ -1,40 +1,40 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import PaintGrid from '../components/PaintGrid';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import PaintGrid from "../components/PaintGrid";
 
 function PaintCost() {
-  const [typeOfProject, setTypeOfProject] = useState('Fresh Painting');
-  const [space, setSpace] = useState('Interior');
-  const [sizeOfHome, setSizeOfHome] = useState('1BHK');
-  const [carpetArea, setCarpetArea] = useState('');
+  const [typeOfProject, setTypeOfProject] = useState("Fresh Painting");
+  const [space, setSpace] = useState("Interior");
+  const [sizeOfHome, setSizeOfHome] = useState("1BHK");
+  const [carpetArea, setCarpetArea] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [price, setPrice] = useState('');
+  const [price, setPrice] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     const data = {
-      typeOfProject: typeOfProject === 'Fresh Painting' ? 0 : 1,
-      paintSpacing: space === 'Interior' ? 2 : 3,
-      homeSize: sizeOfHome === '1BHK' ? 4 : sizeOfHome === '2BHK' ? 5 : 6,
-      carpetArea: Number(carpetArea)
+      typeOfProject: typeOfProject === "Fresh Painting" ? 0 : 1,
+      paintSpacing: space === "Interior" ? 2 : 3,
+      homeSize: sizeOfHome === "1BHK" ? 4 : sizeOfHome === "2BHK" ? 5 : 6,
+      carpetArea: Number(carpetArea),
     };
 
     // typeOfProject, paintSpacing, homeSize, carpetArea;
 
     let config = {
-      method: 'POST',
-      url: 'http://localhost:5001/paint/asian',
+      method: "POST",
+      url: "http://localhost:5001/paint/asian",
       headers: {
-        Accept: '*/*',
-        'User-Agent': 'Thunder Client (https://www.thunderclient.com)',
-        'Content-Type': 'application/json'
+        Accept: "*/*",
+        "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+        "Content-Type": "application/json",
       },
-      data: data
+      data: data,
     };
     console.log(data);
 
@@ -62,7 +62,10 @@ function PaintCost() {
             </h1>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="typeOfProject" className="block text-xl font-medium text-white-700">
+                <label
+                  htmlFor="typeOfProject"
+                  className="block text-xl font-medium text-white-700"
+                >
                   Type of project
                 </label>
                 <div className="mt-1">
@@ -71,17 +74,22 @@ function PaintCost() {
                     name="typeOfProject"
                     value={typeOfProject}
                     onChange={(e) => setTypeOfProject(e.target.value)}
-                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-xl rounded-md"
+                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-xl rounded-md"
                   >
                     <option value="Fresh Painting">Fresh Painting</option>
                     <option value="Re-Painting">Re-Painting</option>
                   </select>
                 </div>
-                <div>Includes two coats each - primer, putty and fresh paint.</div>
+                <div>
+                  Includes two coats each - primer, putty and fresh paint.
+                </div>
               </div>
 
               <div>
-                <label htmlFor="space" className="block text-xl font-medium text-white-700">
+                <label
+                  htmlFor="space"
+                  className="block text-xl font-medium text-white-700"
+                >
                   Select space
                 </label>
                 <div className="mt-1">
@@ -90,7 +98,7 @@ function PaintCost() {
                     name="space"
                     value={space}
                     onChange={(e) => setSpace(e.target.value)}
-                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-xl rounded-md"
+                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-xl rounded-md"
                   >
                     <option value="Interior">Interior</option>
                     <option value="Exterior">Exterior</option>
@@ -99,7 +107,10 @@ function PaintCost() {
               </div>
 
               <div>
-                <label htmlFor="sizeOfHome" className="block text-xl font-medium text-white-700">
+                <label
+                  htmlFor="sizeOfHome"
+                  className="block text-xl font-medium text-white-700"
+                >
                   Size of home
                 </label>
                 <div className="mt-1">
@@ -108,7 +119,7 @@ function PaintCost() {
                     name="sizeOfHome"
                     value={sizeOfHome}
                     onChange={(e) => setSizeOfHome(e.target.value)}
-                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-xl rounded-md"
+                    className="block w-full pl-3 pr-10 py-2 text-base border-white-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-xl rounded-md"
                   >
                     <option value="1BHK">1BHK</option>
                     <option value="2BHK">2BHK</option>
@@ -118,7 +129,10 @@ function PaintCost() {
               </div>
 
               <div>
-                <label htmlFor="carpetArea" className="block text-xl font-medium text-white-700">
+                <label
+                  htmlFor="carpetArea"
+                  className="block text-xl font-medium text-white-700"
+                >
                   Carpet area
                 </label>
                 <div className="mt-1">
@@ -128,7 +142,7 @@ function PaintCost() {
                     id="carpetArea"
                     value={carpetArea}
                     onChange={(e) => setCarpetArea(e.target.value)}
-                    className="shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full sm:text-xl border-white-300 rounded-md"
+                    className="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-xl border-white-300 rounded-md"
                   />
                 </div>
               </div>
@@ -136,7 +150,7 @@ function PaintCost() {
               <div>
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-xl font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-xl font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
                   {isLoading ? (
                     <svg
@@ -154,7 +168,11 @@ function PaintCost() {
                         strokeWidth="4"
                       ></circle>
 
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8v8H4z"
+                      ></path>
                     </svg>
                   ) : null}
                   Get Estimates

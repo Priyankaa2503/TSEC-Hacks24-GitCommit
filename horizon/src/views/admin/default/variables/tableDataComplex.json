@@ -1,26 +1,35 @@
 [
   {
-    "name": "Marketplace",
-    "status": "Approved",
+    "name": "Priyanka",
+    "status": "Completed",
     "date": "24.Jan.2021",
-    "progress": 30
+    "progress": 30,
+    "viewDetails": "View Details",
+    "id":"65ba7fcf40c147cba08948e9"
   },
   {
-    "name": "Marketplace",
-    "status": "Disable",
+    "name": "Rachit",
+    "status": "Pending",
     "date": "30.Dec.2021",
-    "progress": 30
+    "progress": 30,
+    "viewDetails": "View Details",
+    "id":"65ba7b3340c147cba08948c4"
   },
   {
-    "name": "Marketplace",
-    "status": "Error",
+    "name": "Rhythm",
+    "status": "Ongoing",
     "date": "20.May.2021",
-    "progress": 30
+    "progress": 30,
+    "viewDetails": "View Details",
+    "id": "65ba7b3940c147cba08948c6"
   },
   {
-    "name": "Marketplace",
-    "status": "Approved",
+    "name": "Mahek",
+    "status": "Completed",
     "date": "12.Jul.2021",
-    "progress": 30
+    "progress": 30,
+    "viewDetails": "View Details",
+    "id": "65ba7b4040c147cba08948c8"
   }
+  
 ]

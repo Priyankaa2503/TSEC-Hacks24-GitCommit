@@ -1,9 +1,9 @@
-import React from 'react'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import orgRoom from '../../assets/disc_room.png';
-import genRoom from '../../assets/disc_room_green.png';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import orgRoom from "../../assets/disc_room.png";
+import genRoom from "../../assets/disc_room_green.png";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -11,7 +11,7 @@ const Profile = () => {
       <Header />
       <main className="flex flex-1 gap-4 w-full items-center flex-grow flex-col px-4 py-8 background-gradient">
         <h1 className="text-5xl font-bold">
-          View your <span className="text-purple-500">room</span> generations
+          View your <span className="text-green-500">room</span> generations
         </h1>
         <h1>Browse through your previous room generations and compare.</h1>
         <div className="flex flex-col">
@@ -35,7 +35,7 @@ const Profile = () => {
               </div>
             </div>
             <Link
-              className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-purple-600 text-white px-5 py-2 mx-auto mt-4 text-sm shadow-md hover:bg-purple-400 bg-purple-600 font-medium transition"
+              className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-green-600 text-white px-5 py-2 mx-auto mt-4 text-sm shadow-md hover:bg-green-400 bg-green-600 font-medium transition"
               to="/compare"
             >
               <p>Compare</p>
@@ -43,9 +43,9 @@ const Profile = () => {
           </div>
         </div>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
-}
+};
 
-export default Profile
+export default Profile;

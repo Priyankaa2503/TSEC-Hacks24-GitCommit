@@ -4,9 +4,13 @@ import Chart from 'react-apexcharts';
 const BarGraph = () => {
 //   const mode = useSelector((state) => state.config.mode);
   const series = [{
-    name: 'Investment',
-    data: [23, 44, 55, 57, 56]
-  }];
+    name: 'Expected Investment',
+    data: [60000, 44000, 55000, 57000, 56000]
+  },
+  {
+      name:"Actual Invested",
+      data: [51000,65000,69000,56800,96000]
+  },];
 
   const options = {
     chart: {
@@ -46,7 +50,8 @@ const BarGraph = () => {
       }
     },
     fill: {
-      opacity: 1
+      opacity: 1,
+      colors: ['#F44336', '#E91E63']
     },
     tooltip: {
       y: {

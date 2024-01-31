@@ -244,6 +244,15 @@ export default function SignupPage() {
                   color: "gray.500",
                 }}
               />
+              <Input
+                placeholder="+91  ___________"
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
               <Button
                 fontFamily={"heading"}
                 mt={8}
@@ -314,6 +323,15 @@ export default function SignupPage() {
               <Input
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              <Input
+                placeholder="+91  ___________"
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}

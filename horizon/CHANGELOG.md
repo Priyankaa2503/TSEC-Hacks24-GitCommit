@@ -1,17 +1,11 @@
-# Changelog
-## [2.0.0] 2023-09-13 
+## [1.0.1] 2022-03-07
 
-### Big update - NextJS 13 Update
+🐛 Bugs solved:
 
-- Layouts update 
-- Updated routing
-- Updated image component
-- Updated link component
+- Bug with charts being uneven fixed
 
-## [1.0.1] 2022-03-22
-### Bug Fixing 
-Auth layout fixed
-## [1.0.0] 2022-10-17
+## [1.0.0] 2023-02-27
 
 ### Original Release
-- Added Typescript & NextJS
+
+- Added Tailwind CSS as base framework

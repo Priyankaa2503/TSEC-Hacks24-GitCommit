@@ -42,7 +42,7 @@ const PaintWall = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://localhost:3001/getPaints',
+      url: 'http://localhost:5001/getPaints',
       headers: {}
     };
 

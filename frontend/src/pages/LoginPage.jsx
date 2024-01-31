@@ -14,13 +14,13 @@ const LoginPage = () => {
   });
   const login = () => {
     console.log(data);
-    axios.post('http://localhost:3001/auth/login', data).then((res) => {
+    axios.post("http://localhost:5001/auth/login", data).then((res) => {
       console.log(res);
-      const token = res.data.token;
-      const user = res.data.user;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      navigate('/dashboard');
+      const token = res.data.accessToken;
+      const user = res.data.email;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/dashboard");
     });
   };
   return (

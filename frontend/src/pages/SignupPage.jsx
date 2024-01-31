@@ -14,8 +14,8 @@ const SignupPage = () => {
   });
   const register = () => {
     console.log(data);
-    axios.post('http://localhost:3001/auth/register', data).then((res) => {
-      navigate('/login');
+    axios.post("http://localhost:5001/auth/register", data).then((res) => {
+      navigate("/login");
     });
   };
   return (

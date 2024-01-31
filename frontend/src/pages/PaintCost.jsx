@@ -28,7 +28,7 @@ function PaintCost() {
 
     let config = {
       method: 'POST',
-      url: 'http://localhost:3001/paint/asian',
+      url: 'http://localhost:5001/paint/asian',
       headers: {
         Accept: '*/*',
         'User-Agent': 'Thunder Client (https://www.thunderclient.com)',

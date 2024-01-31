@@ -9,36 +9,25 @@ import {image} from '../constant'
 const HomePage = () => {
   console.log(image);
   return (
-    <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
+    <div className="flex w-full flex-col items-center justify-start py-2 min-h-screen">
       <Header />
-      <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
-        <div className="">
-          
-          <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
-            Renovate your rooms{' '}
-            <span className="relative whitespace-nowrap text-purple-600">
-              <SquigglyLines />
-              <span className="relative">using AI</span>
-            </span>{' '}
-            for everyone.
-          </h1>
-          <div className='flex items-center justify-center my-28 rounded-lg'>
-          <div>
-                <h3 className="mb-1 font-medium text-lg">OUR HOME</h3>
-                <img
-                  alt="Original photo of a room with roomGPT.io"
-                  src="home.jpg"
-                  className="w-full object-cover h-96 rounded-2xl"
-                  width={400}
-                  height={400}
-                />
-              </div>
-        
+      <main className="flex flex-1 w-full flex-col items-start justify-start  sm:mt-20 mt-20 background-gradient">
+        <div className="flex">
+          <div className="">
+            <h1 className="mx-auto max-w-4xl font-display text-8xl font-bold tracking-normal text-gray-300 sm:text-8xl">
+              Reinvent{" "}
+              <p className="mt-6 text-8xl text-[#01BD57]">
+                <span className="relative mt-20">Your Interiors</span>
+              </p>{" "}
+            </h1>
+            {/* <div className="flex items-center justify-center my-28 rounded-lg"> */}
+
+            <h2 className="mx-auto mt-12 max-w-xl text-xl sm:text-gray-200  text-gray-200 leading-7">
+              The perfect balance between inner guiding you while still bringing
+              out your vision essence of you.
+            </h2>
           </div>
-          <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-400  text-gray-500 leading-7">
-            Take a picture of your room and see how your room looks in different themes and colors. Remodel your room
-            today.
-          </h2>
+          <img src="Choosing.svg" alt="" className="w-[40%] h-[40%] ml-20" />
         </div>
         <div className="flex justify-between items-center w-full flex-col sm:mt-10 mt-6">
           <div className="flex flex-col space-y-10 mt-4 mb-16">

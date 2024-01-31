@@ -10,10 +10,10 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   const router = useRouter();
 
-  // const logout = () => {
-  //   // localStorage.removeItem("token");
-  //   router.push("/auth/login");
-  // };
+  const logout = () => {
+    localStorage.removeItem("token");
+    router.push("/auth/login");
+  };
 
   return (
     <main
@@ -28,7 +28,7 @@ export default function Home() {
           <p className="btn">Signup</p>
         </Link>
 
-        <Button colorScheme="teal">
+        <Button onClick={logout} colorScheme="teal">
           logout
         </Button>
       </div>

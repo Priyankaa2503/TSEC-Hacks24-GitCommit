@@ -90,6 +90,26 @@ export default function SignupPage() {
     }
   };
 
+   const handleInterior = async (event) => {
+     console.log("hi");
+     event.preventDefault();
+
+     try {
+       const res = await axios.post("http://localhost:5001/auth/register", {
+         email: email,
+         password: password,
+         isAdmin:true,
+       });
+       console.log(res);
+       if (res.status === 201) {
+         router.push("/auth/login");
+         console.log("success");
+       }
+     } catch (error) {
+       console.log(error);
+     }
+   };
+
   useEffect(() => {
     console.log(email);
   }, []);
@@ -188,7 +208,7 @@ export default function SignupPage() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Join our team
+              Join as StakeHolder
               <Text
                 as={"span"}
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -224,8 +244,76 @@ export default function SignupPage() {
                   color: "gray.500",
                 }}
               />
+              <Button
+                fontFamily={"heading"}
+                mt={8}
+                type="submit"
+                w={"full"}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                color={"white"}
+                _hover={{
+                  bgGradient: "linear(to-r, red.400,pink.400)",
+                  boxShadow: "xl",
+                }}
+              >
+                Submit
+              </Button>
+            </Stack>
+          </Box>
+          <p>Already have an account? </p>
+          <Button
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+            fontFamily={"heading"}
+            bg={"gray.200"}
+            color={"gray.800"}
+          >
+            Login
+          </Button>
+        </Stack>
+        <Stack
+          bg={"gray.50"}
+          rounded={"xl"}
+          p={{ base: 4, sm: 6, md: 8 }}
+          spacing={{ base: 8 }}
+          maxW={{ lg: "lg" }}
+        >
+          <Stack spacing={4}>
+            <Heading
+              color={"gray.800"}
+              lineHeight={1.1}
+              fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
+            >
+              Signup as Interior Designer
+              <Text
+                as={"span"}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                bgClip="text"
+              >
+                !
+              </Text>
+            </Heading>
+            <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
+              We’re looking for amazing engineers just like you! Become a part
+              of our rockstar engineering team and skyrocket your career!
+            </Text>
+          </Stack>
+          <Box as={"form"} onSubmit={handleInterior} mt={10}>
+            <Stack spacing={4}>
               <Input
-                placeholder="+91  ___________"
+                placeholder="example@gmail.com"
+                onChange={(e) => setEmail(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              <Input
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
                 bg={"gray.100"}
                 border={0}
                 color={"gray.500"}
@@ -262,6 +350,7 @@ export default function SignupPage() {
           </Button>
         </Stack>
       </Container>
+
       <Blur
         position={"absolute"}
         top={-10}

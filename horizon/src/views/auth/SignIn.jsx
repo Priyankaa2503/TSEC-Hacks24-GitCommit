@@ -81,7 +81,10 @@ export default function SignIn() {
       console.log(res);
       if (res.status === 200) {
         router("/");
+        console.log(res.data);
         localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem("user", res.data.email);
+        localStorage.setItem("name", res.data.name);
         console.log("success");
       }
     } catch (error) {

@@ -17,8 +17,12 @@ import {
   MdBarChart,
   MdPerson,
   MdLock,
+  MdChat,
 } from "react-icons/md";
 import Budget from "views/admin/budget";
+import Contact from "views/admin/contact";
+
+import PaintWall from "views/admin/PaintWall"
 import Contact from "views/admin/contact";
 
 const routes = [
@@ -53,6 +57,13 @@ const routes = [
     secondary: true,
   },
   {
+    name: "Paint Wall",
+    layout: "/admin",
+    path: "paintwall",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <PaintWall />,
+  },
+  {
     name: "Data Tables",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6" />,
@@ -79,6 +90,13 @@ const routes = [
     path: "rtl",
     icon: <MdHome className="h-6 w-6" />,
     component: <RTLDefault />,
+  },
+  {
+    name: "Contact",
+    layout: "/admin",
+    path: "contact",
+    icon: <MdChat className="h-6 w-6" />,
+    component: <Contact />,
   },
 ];
 export default routes;

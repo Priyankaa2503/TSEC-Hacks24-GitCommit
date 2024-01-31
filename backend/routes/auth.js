@@ -9,6 +9,7 @@ const crypto = require("crypto");
 router.post("/register", async (req, res) => {
   const newUser = new User({
     // username: req.body.username,
+    name: req.body.name,
     email: req.body.email,
     password: cryptojs.AES.encrypt(
       req.body.password,

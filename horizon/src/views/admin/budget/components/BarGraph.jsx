@@ -38,7 +38,7 @@ const BarGraph = () => {
       title: {
         text: 'Months'
       },
-      categories: ['Fl0oring', 'Painting', 'Plumbing', 'Wiring', 'Furniture'],
+      categories: ['Flooring', 'Painting', 'Plumbing', 'Wiring', 'Furniture'],
     },
     yaxis: {
       title: {

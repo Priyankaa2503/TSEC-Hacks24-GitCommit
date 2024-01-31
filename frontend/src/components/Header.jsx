@@ -17,6 +17,13 @@ export default function Header() {
           >
             <div>Dashboard</div>
           </Link>
+          <Link
+            to="/progress"
+            className="border-r border-gray-300 pr-4 flex space-x-2 hover:text-purple-400 transition"
+          >
+            <div>Progress</div>
+          </Link>
+        
           <Link to="/compare" className="border-r border-gray-300 pr-4 flex space-x-2 hover:text-purple-400 transition">
             <div>Compare</div>
           </Link>
@@ -31,6 +38,12 @@ export default function Header() {
             className="border-r border-gray-300 pr-4 flex space-x-2 hover:text-purple-400 transition"
           >
             <div>Playground</div>
+          </Link>
+          <Link
+            to="/explore"
+            className="border-r border-gray-300 pr-4 flex space-x-2 hover:text-purple-400 transition"
+          >
+            <div>Explore</div>
           </Link>
           <Link className="flex items-center gap-2 hover:text-purple-400 transition" to="/profile">
             <h1 className="font-semibold">{user.name}</h1>

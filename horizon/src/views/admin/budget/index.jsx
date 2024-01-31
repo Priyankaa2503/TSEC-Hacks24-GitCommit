@@ -76,7 +76,7 @@ const Budget = () => {
             </div>
             <div className="chartRef">
               <div style={{ minHeight: "395px" }}>
-                <BarGraph />
+                <BarGraph taskExpenses={taskExpenses}/>
               </div>
             </div>
           </div>

@@ -19,7 +19,8 @@ import {
   MdLock,
   MdChat,
 } from "react-icons/md";
-import Contact from "views/contact";
+import Budget from "views/admin/budget";
+import Contact from "views/admin/contact";
 
 const routes = [
   {
@@ -28,6 +29,13 @@ const routes = [
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
+  },
+  {
+    name: "Budget",
+    layout: "/admin",
+    path: "budget-tracking",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <Budget />,
   },
   {
     name: "NFT Marketplace",

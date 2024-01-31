@@ -20,6 +20,8 @@ import {
   MdChat,
 } from "react-icons/md";
 import Budget from "views/admin/budget";
+
+import PaintWall from "views/admin/PaintWall"
 import Contact from "views/admin/contact";
 
 const routes = [
@@ -44,6 +46,13 @@ const routes = [
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <NFTMarketplace />,
     secondary: true,
+  },
+  {
+    name: "Paint Wall",
+    layout: "/admin",
+    path: "paintwall",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <PaintWall />,
   },
   {
     name: "Data Tables",

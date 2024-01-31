@@ -17,6 +17,9 @@ import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 
 const Dashboard = () => {
+
+  const count = JSON.parse(localStorage.getItem("countData"));
+  console.log(count);
   return (
     <div>
       {/* Card widget */}
@@ -59,6 +62,8 @@ const Dashboard = () => {
         <ComplexTable
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
+          // total={total}
+          count={count}
         />
       </div>
 

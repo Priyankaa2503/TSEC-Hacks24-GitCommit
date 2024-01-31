@@ -1,13 +1,14 @@
 const mongoose = require('mongoose')
 const productSchema = new mongoose.Schema(
   {
-    name: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Customer",
+      required: true,
+    },
+    taskname: {
       type: String,
       required: true,
-      unique: true,
-    },
-    desc: {
-      type: String,
     },
     status: {
       type: String,

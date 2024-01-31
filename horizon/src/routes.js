@@ -19,6 +19,8 @@ import {
   MdLock,
 } from "react-icons/md";
 
+import PaintWall from "views/admin/PaintWall"
+
 const routes = [
   {
     name: "Main Dashboard",
@@ -34,6 +36,13 @@ const routes = [
     icon: <MdOutlineShoppingCart className="h-6 w-6" />,
     component: <NFTMarketplace />,
     secondary: true,
+  },
+  {
+    name: "Paint Wall",
+    layout: "/admin",
+    path: "paintwall",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <PaintWall />,
   },
   {
     name: "Data Tables",
@@ -55,13 +64,6 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;

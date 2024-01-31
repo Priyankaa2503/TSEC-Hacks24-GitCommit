@@ -441,7 +441,6 @@ const Generate = () => {
         </ResizablePanel>
         {/* <ToastContainer position="top-center" reverseOrder={false} /> */}
       </main>
-      <Footer />
     </div>
   );
 };

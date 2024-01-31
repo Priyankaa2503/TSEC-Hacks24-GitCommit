@@ -20,6 +20,8 @@ import {
 } from "react-icons/md";
 import Budget from "views/admin/budget";
 
+import PaintWall from "views/admin/PaintWall"
+
 const routes = [
   {
     name: "Main Dashboard",
@@ -44,6 +46,13 @@ const routes = [
     secondary: true,
   },
   {
+    name: "Paint Wall",
+    layout: "/admin",
+    path: "paintwall",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <PaintWall />,
+  },
+  {
     name: "Data Tables",
     layout: "/admin",
     icon: <MdBarChart className="h-6 w-6" />,
@@ -63,13 +72,6 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
-  },
-  {
-    name: "RTL Admin",
-    layout: "/rtl",
-    path: "rtl",
-    icon: <MdHome className="h-6 w-6" />,
-    component: <RTLDefault />,
   },
 ];
 export default routes;

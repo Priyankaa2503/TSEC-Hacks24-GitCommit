@@ -121,6 +121,7 @@
   
   #you .message-content {
     justify-content: flex-start;
+    background-color: green;
   }
   
   #you .message-meta {

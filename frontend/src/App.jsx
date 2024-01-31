@@ -12,6 +12,10 @@ import PaintCost from './pages/PaintCost';
 import Generate1 from './pages/Generate1';
 import Compare from './pages/Compare';
 import DallEPage from './pages/DallEPage';
+import Progress from './pages/Progress';
+import Explore from './pages/explore/Explore';
+// import Explore from './pages/Explore';
+
 
 const App = () => {
   return (
@@ -27,6 +31,8 @@ const App = () => {
         <Route path="/paint-cost" element={<PaintCost />} />
         <Route path='/compare' element={<Compare />} />
         <Route path='/dallE' element={<DallEPage />} />
+        <Route path='/progress' element={<Progress/>}/>
+        <Route path='/explore' element={<Explore/>}/>
       </Routes>
     </div>
   );

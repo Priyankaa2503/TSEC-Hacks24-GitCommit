@@ -20,6 +20,7 @@ import {
   MdChat,
 } from "react-icons/md";
 import Budget from "views/admin/budget";
+import Contact from "views/admin/contact";
 
 import PaintWall from "views/admin/PaintWall"
 import Contact from "views/admin/contact";
@@ -32,6 +33,14 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
+  {
+    name: "Contact",
+    layout: "/admin",
+    path: "contact",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <Contact />,
+  },
+
   {
     name: "Budget",
     layout: "/admin",

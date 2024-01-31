@@ -7,7 +7,7 @@ export default function Header() {
     <header className="flex justify-between items-center w-full border-b py-6 sm:px-4 px-2 border-gray-500 gap-2">
       <Link to="/" className="flex space-x-2">
         <img alt="header text" src="/bed.svg" className="sm:w-10 sm:h-10 w-9 h-9" width={24} height={24} />
-        <h1 className="sm:text-3xl text-xl font-bold ml-2 tracking-tight">decorGPT</h1>
+        <h1 className="sm:text-3xl text-xl font-bold ml-2 tracking-tight">DREAM HOUSE</h1>
       </Link>
       {token ? (
         <div className="flex items-center space-x-4">

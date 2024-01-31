@@ -12,7 +12,8 @@ const HomePage = () => {
     <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-20 mt-20 background-gradient">
-        <div className="my-12">
+        <div className="">
+          
           <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl">
             Renovate your rooms{' '}
             <span className="relative whitespace-nowrap text-purple-600">
@@ -21,6 +22,19 @@ const HomePage = () => {
             </span>{' '}
             for everyone.
           </h1>
+          <div className='flex items-center justify-center my-28 rounded-lg'>
+          <div>
+                <h3 className="mb-1 font-medium text-lg">OUR HOME</h3>
+                <img
+                  alt="Original photo of a room with roomGPT.io"
+                  src="home.jpg"
+                  className="w-full object-cover h-96 rounded-2xl"
+                  width={400}
+                  height={400}
+                />
+              </div>
+        
+          </div>
           <h2 className="mx-auto mt-12 max-w-xl text-lg sm:text-gray-400  text-gray-500 leading-7">
             Take a picture of your room and see how your room looks in different themes and colors. Remodel your room
             today.

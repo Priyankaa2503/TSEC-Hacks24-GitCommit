@@ -64,6 +64,9 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div> */}
+            <div>
+              <img src='https://img.freepik.com/premium-photo/floor-plan-house-top-view-3d-mockups-design-3d-highquality-mockups-generative-ai_913266-2662.jpg'/>
+            </div>
         <div className="flex w-full gap-8 my-12">
           <div className="px-20 rounded-xl border-2 border-purple-600 bg-purple-100/10 shadow-xl hover:scale-105 hover:shadow-purple-500/50 transform duration-300 shadow-purple-500/25 py-12 flex flex-col items-center gap-8 w-full">
             <h1 className="text-4xl text-purple-100 font-semibold">Paint selected walls</h1>

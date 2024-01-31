@@ -1,80 +1,208 @@
-import InputField from "components/fields/InputField";
-import { FcGoogle } from "react-icons/fc";
-import Checkbox from "components/checkbox";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Flex,
+  Stack,
+  Heading,
+  Text,
+  Container,
+  Input,
+  Button,
+  SimpleGrid,
+  Avatar,
+  AvatarGroup,
+  useBreakpointValue,
+  IconProps,
+  Icon,
+} from "@chakra-ui/react";
+
+import React from "react";
+
+const avatars = [
+  {
+    name: "Ryan Florence",
+    url: "https://bit.ly/ryan-florence",
+  },
+  {
+    name: "Segun Adebayo",
+    url: "https://bit.ly/sage-adebayo",
+  },
+  {
+    name: "Kent Dodds",
+    url: "https://bit.ly/kent-c-dodds",
+  },
+  {
+    name: "Prosper Otemuyiwa",
+    url: "https://bit.ly/prosper-baba",
+  },
+  {
+    name: "Christian Nwamba",
+    url: "https://bit.ly/code-beast",
+  },
+];
+
+const Blur = (props) => {
+  return (
+    <Icon
+      width={useBreakpointValue({ base: "100%", md: "40vw", lg: "30vw" })}
+      zIndex={useBreakpointValue({ base: -1, md: -1, lg: 0 })}
+      height="560px"
+      viewBox="0 0 528 560"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <circle cx="71" cy="61" r="111" fill="#F56565" />
+      <circle cx="244" cy="106" r="139" fill="#ED64A6" />
+      <circle cy="291" r="139" fill="#ED64A6" />
+      <circle cx="80.5" cy="189.5" r="101.5" fill="#ED8936" />
+      <circle cx="196.5" cy="317.5" r="101.5" fill="#ECC94B" />
+      <circle cx="70.5" cy="458.5" r="101.5" fill="#48BB78" />
+      <circle cx="426.5" cy="-0.5" r="101.5" fill="#4299E1" />
+    </Icon>
+  );
+};
 
 export default function SignIn() {
-  return (
-    <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
-      <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-          Sign In
-        </h4>
-        <p className="mb-9 ml-1 text-base text-gray-600">
-          Enter your email and password to sign in!
-        </p>
-        <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
-          <div className="rounded-full text-xl">
-            <FcGoogle />
-          </div>
-          <h5 className="text-sm font-medium text-navy-700 dark:text-white">
-            Sign In with Google
-          </h5>
-        </div>
-        <div className="mb-6 flex items-center  gap-3">
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
-          <p className="text-base text-gray-600 dark:text-white"> or </p>
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
-        </div>
-        {/* Email */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Email*"
-          placeholder="mail@simmmple.com"
-          id="email"
-          type="text"
-        />
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useNavigate();
+  const handleSubmit = async (event) => {
+    console.log("hi");
+    event.preventDefault();
 
-        {/* Password */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Password*"
-          placeholder="Min. 8 characters"
-          id="password"
-          type="password"
-        />
-        {/* Checkbox */}
-        <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center">
-            <Checkbox />
-            <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-              Keep me logged In
-            </p>
-          </div>
-          <a
-            className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-            href=" "
+    try {
+      const res = await axios.post("http://localhost:5001/auth/login", {
+        email: email,
+        password: password,
+      });
+      console.log(res);
+      if (res.status === 200) {
+        router("/");
+        localStorage.setItem("token", res.data.accessToken);
+        console.log("success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(email);
+  }, []);
+
+  return (
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      direction={"column"}
+      style={{ minHeight: "100vh" }}
+    >
+      <Flex
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Stack
+          bg={"gray.50"}
+          rounded={"xl"}
+          p={{ base: 4, sm: 6, md: 8 }}
+          spacing={{ base: 8 }}
+          maxW={{ lg: "lg" }}
+        >
+          <Stack spacing={4}>
+            <Heading
+              color={"gray.800"}
+              lineHeight={1.1}
+              fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
+            >
+              Login
+              <Text
+                as={"span"}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                bgClip="text"
+              >
+                !
+              </Text>
+            </Heading>
+            <Text color={"gray.500"} fontSize={{ base: "sm", sm: "md" }}>
+              We’re looking for amazing engineers just like you! Become a part
+              of our rockstar engineering team and skyrocket your career!
+            </Text>
+          </Stack>
+          <Box as={"form"} onSubmit={handleSubmit} mt={10}>
+            <Stack spacing={4}>
+              <Input
+                placeholder="example@gmail.com"
+                onChange={(e) => setEmail(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              <Input
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              
+              <Button
+                fontFamily={"heading"}
+                mt={8}
+                type="submit"
+                w={"full"}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                color={"white"}
+                _hover={{
+                  bgGradient: "linear(to-r, red.400,pink.400)",
+                  boxShadow: "xl",
+                }}
+              >
+                Login
+              </Button>
+            </Stack>
+          </Box>
+          <p>Don't have an account? </p>
+          <Button
+            onClick={() => {
+              router("/auth/sign-up");
+            }}
+            fontFamily={"heading"}
+            bg={"gray.200"}
+            color={"gray.800"}
           >
-            Forgot Password?
-          </a>
-        </div>
-        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
-          Sign In
-        </button>
-        <div className="mt-4">
-          <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
-            Not registered yet?
-          </span>
-          <a
-            href=" "
-            className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
+            Create Account
+          </Button>
+          <p>Forgot Password? </p>
+          <Button
+            onClick={() => {
+              router("/auth/forgot-password");
+            }}
+            fontFamily={"heading"}
+            bg={"gray.200"}
+            color={"gray.800"}
           >
-            Create an account
-          </a>
-        </div>
-      </div>
-    </div>
+            Forgot Password
+          </Button>
+        </Stack>
+      </Flex>
+
+      <Blur
+        position={"absolute"}
+        top={-10}
+        left={-10}
+        style={{ filter: "blur(70px)" }}
+      />
+    </Flex>
   );
 }

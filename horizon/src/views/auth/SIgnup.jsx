@@ -1,7 +1,6 @@
-"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useNavigate } from "react-router-dom";
 
 import {
   Box,
@@ -20,9 +19,7 @@ import {
   Icon,
 } from "@chakra-ui/react";
 
-import React from 'react'
-
-
+import React from "react";
 
 const avatars = [
   {
@@ -48,7 +45,6 @@ const avatars = [
 ];
 
 const Blur = (props) => {
-
   return (
     <Icon
       width={useBreakpointValue({ base: "100%", md: "40vw", lg: "30vw" })}
@@ -71,36 +67,52 @@ const Blur = (props) => {
 };
 
 export default function SignupPage() {
-      const [email, setEmail] = useState("");
-      const [password, setPassword] = useState("");
-      const router = useRouter();
-        const handleSubmit = async (event) => {
-        console.log("hi")
-         event.preventDefault();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useNavigate();
+  const handleSubmit = async (event) => {
+    console.log("hi");
+    event.preventDefault();
 
-         try {
-           const res = await axios.post(
-             "http://localhost:5001/auth/register",
-             {
-               email: email,
-               password: password,
-             }
-           );
-              console.log(res);
-              if(res.status === 201) {
-                router.push("/auth/login"); 
-                console.log("success");
-              }
+    try {
+      const res = await axios.post("http://localhost:5001/auth/register", {
+        email: email,
+        password: password,
+        isAdmin: false,
+      });
+      console.log(res);
+      if (res.status === 201) {
+        router("/auth/sign-in");
+        console.log("success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-         } catch (error) {
-           console.log(error);
-         }
-       };
+  const handleInterior = async (event) => {
+    console.log("hi");
+    event.preventDefault();
 
-       useEffect(() => {    
-        console.log(email);
+    try {
+      const res = await axios.post("http://localhost:5001/auth/register", {
+        email: email,
+        password: password,
+        isAdmin: true,
+      });
+      console.log(res);
+      if (res.status === 201) {
+        router.push("/auth/sign-in");
+        console.log("success");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-        }, []);
+  useEffect(() => {
+    console.log(email);
+  }, []);
 
   return (
     <Box position={"relative"}>
@@ -196,7 +208,7 @@ export default function SignupPage() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Join our team
+              Join as StakeHolder
               <Text
                 as={"span"}
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -232,15 +244,7 @@ export default function SignupPage() {
                   color: "gray.500",
                 }}
               />
-              <Input
-                placeholder="+91  ___________"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
+             
               <Button
                 fontFamily={"heading"}
                 mt={8}
@@ -258,89 +262,16 @@ export default function SignupPage() {
             </Stack>
           </Box>
           <p>Already have an account? </p>
-          <Button onClick={()=>{router.push("/auth/login")}} fontFamily={"heading"} bg={"gray.200"} color={"gray.800"}>
+          <Button
+            onClick={() => {
+              router("/auth/sign-in");
+            }}
+            fontFamily={"heading"}
+            bg={"gray.200"}
+            color={"gray.800"}
+          >
             Login
           </Button>
-        </Stack>
-      </Container>
-        <Container
-        as={SimpleGrid}
-        maxW={"7xl"}
-        columns={{ base: 1, md: 2 }}
-        spacing={{ base: 10, lg: 32 }}
-        py={{ base: 10, sm: 20, lg: 32 }}
-      >
-        <Stack spacing={{ base: 10, md: 20 }}>
-          <Heading
-            lineHeight={1.1}
-            fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }}
-          >
-            Senior web designers{" "}
-            <Text
-              as={"span"}
-              bgGradient="linear(to-r, red.400,pink.400)"
-              bgClip="text"
-            >
-              &
-            </Text>{" "}
-            Full-Stack Developers
-          </Heading>
-          <Stack direction={"row"} spacing={4} align={"center"}>
-            <AvatarGroup>
-              {avatars.map((avatar) => (
-                <Avatar
-                  key={avatar.name}
-                  name={avatar.name}
-                  src={avatar.url}
-                  // eslint-disable-next-line react-hooks/rules-of-hooks
-                  size={useBreakpointValue({ base: "md", md: "lg" })}
-                  position={"relative"}
-                  zIndex={2}
-                  _before={{
-                    content: '""',
-                    width: "full",
-                    height: "full",
-                    rounded: "full",
-                    transform: "scale(1.125)",
-                    bgGradient: "linear(to-bl, red.400,pink.400)",
-                    position: "absolute",
-                    zIndex: -1,
-                    top: 0,
-                    left: 0,
-                  }}
-                />
-              ))}
-            </AvatarGroup>
-            <Text fontFamily={"heading"} fontSize={{ base: "4xl", md: "6xl" }}>
-              +
-            </Text>
-            <Flex
-              align={"center"}
-              justify={"center"}
-              fontFamily={"heading"}
-              fontSize={{ base: "sm", md: "lg" }}
-              bg={"gray.800"}
-              color={"white"}
-              rounded={"full"}
-              minWidth={useBreakpointValue({ base: "44px", md: "60px" })}
-              minHeight={useBreakpointValue({ base: "44px", md: "60px" })}
-              position={"relative"}
-              _before={{
-                content: '""',
-                width: "full",
-                height: "full",
-                rounded: "full",
-                transform: "scale(1.125)",
-                bgGradient: "linear(to-bl, orange.400,yellow.400)",
-                position: "absolute",
-                zIndex: -1,
-                top: 0,
-                left: 0,
-              }}
-            >
-              YOU
-            </Flex>
-          </Stack>
         </Stack>
         <Stack
           bg={"gray.50"}
@@ -355,7 +286,7 @@ export default function SignupPage() {
               lineHeight={1.1}
               fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }}
             >
-              Join our team
+              Signup as Interior Designer
               <Text
                 as={"span"}
                 bgGradient="linear(to-r, red.400,pink.400)"
@@ -369,7 +300,7 @@ export default function SignupPage() {
               of our rockstar engineering team and skyrocket your career!
             </Text>
           </Stack>
-          <Box as={"form"} onSubmit={handleSubmit} mt={10}>
+          <Box as={"form"} onSubmit={handleInterior} mt={10}>
             <Stack spacing={4}>
               <Input
                 placeholder="example@gmail.com"
@@ -391,15 +322,7 @@ export default function SignupPage() {
                   color: "gray.500",
                 }}
               />
-              <Input
-                placeholder="+91  ___________"
-                bg={"gray.100"}
-                border={0}
-                color={"gray.500"}
-                _placeholder={{
-                  color: "gray.500",
-                }}
-              />
+
               <Button
                 fontFamily={"heading"}
                 mt={8}
@@ -417,11 +340,19 @@ export default function SignupPage() {
             </Stack>
           </Box>
           <p>Already have an account? </p>
-          <Button onClick={()=>{router.push("/auth/login")}} fontFamily={"heading"} bg={"gray.200"} color={"gray.800"}>
+          <Button
+            onClick={() => {
+              router("/auth/sign-in");
+            }}
+            fontFamily={"heading"}
+            bg={"gray.200"}
+            color={"gray.800"}
+          >
             Login
           </Button>
         </Stack>
       </Container>
+
       <Blur
         position={"absolute"}
         top={-10}

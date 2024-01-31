@@ -6,14 +6,54 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
+import {
+  Button,
+  
+} from "@chakra-ui/react";
+import { MdDelete } from "react-icons/md";
 import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Progress from "components/progress";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
+import { GrAdd } from "react-icons/gr";
+import { Modall } from "./Modal";
 const ComplexTable = (props) => {
   const { columnsData, tableData } = props;
+  const [name,setName] = useState("");
+  const [cust,setCust] = useState([]);
+  const getCust = async () => {
+    
+    try{
+      const res = await axios.get("http://localhost:5001/customer/");
+      console.log(res.data);
+      
+      setCust(res.data);
+    }
+    catch(err){
+      console.log(err);
+    }
+   
+  };
+  const delCust = async (id) => {
+    try {
+      const res = await axios.delete(`http://localhost:5001/customer/${id}`);
+      console.log(res.data);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+  useEffect(() => {
+    getCust();
+  }, []);
+
 
   const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
+  const data = useMemo(() => cust, [cust]);
 
   const tableInstance = useTable(
     {
@@ -37,14 +77,15 @@ const ComplexTable = (props) => {
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-      <div class="relative flex items-center justify-between pt-4">
-        <div class="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
+      <div className="relative flex items-center justify-between pt-4">
+        <div className="text-xl font-bold text-navy-700 dark:text-white">
+          Task List
         </div>
-        <CardMenu />
+      
+        <Modall/>
       </div>
 
-      <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
+      <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (
@@ -65,12 +106,13 @@ const ComplexTable = (props) => {
           </thead>
           <tbody {...getTableBodyProps()}>
             {page.map((row, index) => {
+              console.log(row);
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    if (cell.column.Header === "NAME") {
+                    if (cell.column.Header === "CUSTOMER NAME") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
@@ -80,11 +122,11 @@ const ComplexTable = (props) => {
                       data = (
                         <div className="flex items-center gap-2">
                           <div className={`rounded-full text-xl`}>
-                            {cell.value === "Approved" ? (
+                            {cell.value === "Completed" ? (
                               <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Disable" ? (
+                            ) : cell.value === "Pending" ? (
                               <MdCancel className="text-red-500" />
-                            ) : cell.value === "Error" ? (
+                            ) : cell.value === "Ongoing" ? (
                               <MdOutlineError className="text-orange-500" />
                             ) : null}
                           </div>
@@ -94,13 +136,44 @@ const ComplexTable = (props) => {
                         </div>
                       );
                     } else if (cell.column.Header === "DATE") {
+                      let dateObject = new Date(cell.value);
+                      let formattedDate =
+                        dateObject.toLocaleDateString("en-US"); // format: MM/DD/YYYY
+
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {cell.value}
+                          {formattedDate}
                         </p>
                       );
                     } else if (cell.column.Header === "PROGRESS") {
                       data = <Progress width="w-[108px]" value={cell.value} />;
+                    } else if (cell.column.Header === "VIEW DETAILS") {
+                      data = (
+                        <Link
+                          to={`/admin/view-details/${cell.row.original._id}`}
+                          className="text-sm font-bold text-navy-700 dark:text-white"
+                        >
+                          <Button
+                            fontFamily={"heading"}
+                            w={"70%"}
+                            bgGradient="linear(to-r, blue.400,blue.700)"
+                            color={"white"}
+                            _hover={{
+                              bgGradient: "linear(to-r, blue.400,blue.700)",
+                              boxShadow: "xl",
+                            }}
+                          >
+                            View Details
+                          </Button>
+                        </Link>
+                      );
+                    } else if (cell.column.Header === " ") {
+                      data = (
+                        <MdDelete
+                          onClick={() => delCust(cell.row.original._id)}
+                          size={18}
+                        />
+                      );
                     }
                     return (
                       <td

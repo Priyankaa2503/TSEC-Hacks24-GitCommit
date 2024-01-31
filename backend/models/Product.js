@@ -6,15 +6,20 @@ const productSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    description: {
+    desc: {
       type: String,
-      required: true,
     },
     status: {
       type: String,
       enum: ["pending", "ongoing", "completed"],
       default: "pending",
     },
+    date: {
+      type: Date,
+    },
+    // progress: {
+    //   type: Number,
+    // },
   },
   { timestamps: true }
 );

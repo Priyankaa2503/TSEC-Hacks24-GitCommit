@@ -53,6 +53,14 @@ const Dashboard = () => {
           subtitle={"$2433"}
         />
       </div>
+      {/* Complex Table , Task & Calendar */}
+
+      <div className="mt-10">
+        <ComplexTable
+          columnsData={columnsDataComplex}
+          tableData={tableDataComplex}
+        />
+      </div>
 
       {/* Charts */}
 
@@ -78,13 +86,6 @@ const Dashboard = () => {
           <DailyTraffic />
           <PieChartCard />
         </div>
-
-        {/* Complex Table , Task & Calendar */}
-
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        />
 
         {/* Task chart & Calendar */}
 

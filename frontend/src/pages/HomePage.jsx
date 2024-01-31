@@ -1,10 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import {image} from '../constant'
+import React from "react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
+import { image } from "../constant";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-
 
 const HomePage = () => {
   console.log(image);
@@ -48,10 +47,10 @@ const HomePage = () => {
             </Carousel>
             <div className="flex justify-center">
               <Link
-                className="bg-[#01BD57] w-[300px] text-center text-xl rounded-xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-purple-500 transition"
+                className="bg-[#01BD57] w-[300px] text-center text-xl rounded-xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-green-500 transition"
                 to="/login"
               >
-               Get Onboard with us!
+                Get Onboard with us!
               </Link>
             </div>
           </div>

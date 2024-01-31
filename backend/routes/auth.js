@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const User = require('../models/User.js');
-const cryptojs = require('crypto-js')
-const jwt = require('jsonwebtoken')
+const router = require("express").Router();
+const User = require("../models/User.js");
+const cryptojs = require("crypto-js");
+const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 
@@ -34,31 +34,35 @@ router.post("/register", async (req, res) => {
 });
 //LOGIN
 router.post("/login", async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.body.email})
-        if(!user)
-        {
-            res.status(401).json({ error: "Wrong Credentials" });
-        }
-        const hashPass = cryptojs.AES.decrypt(user.password,process.env.SECRET_KEY).toString(cryptojs.enc.Utf8)
-        if(hashPass!== req.body.password)
-        {
-            res.status(401).json({ error: "Incorrect Password" });
-        }
-        //create a jwt token after successful login 
-        const accessToken = jwt.sign({
-            id:user._id,
-            isAdmin:user.isAdmin
-        },process.env.SECRET_KEY,
-        {expiresIn:"3d"});
-        // remove password from response 
-        //_.doc is used to only return required doc and not the other data mongodb stores in a collection 
-        const {password,...data}= user._doc;
-        res.status(200).json({...data,accessToken});
-    } catch (error) {
-        console.error(error);
-            res.status(500).json({ error: "Internal server error." });
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      res.status(401).json({ error: "Wrong Credentials" });
     }
+    const hashPass = cryptojs.AES.decrypt(
+      user.password,
+      process.env.SECRET_KEY
+    ).toString(cryptojs.enc.Utf8);
+    if (hashPass !== req.body.password) {
+      res.status(401).json({ error: "Incorrect Password" });
+    }
+    //create a jwt token after successful login
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: "3d" }
+    );
+    // remove password from response
+    //_.doc is used to only return required doc and not the other data mongodb stores in a collection
+    const { password, ...data } = user._doc;
+    res.status(200).json({ ...data, accessToken });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error." });
+  }
 });
 
 router.post("/forgotPassword", async (req, res) => {
@@ -104,14 +108,12 @@ router.post("/forgotPassword", async (req, res) => {
         console.log(err);
         return res.status(500).json({ error: "Failed to send email." });
       }
-      res
-        .status(200)
-        .json({
-          message:
-            "An e-mail has been sent to " +
-            user.email +
-            " with further instructions.",
-        });
+      res.status(200).json({
+        message:
+          "An e-mail has been sent to " +
+          user.email +
+          " with further instructions.",
+      });
     });
   } catch (error) {
     console.error(error);

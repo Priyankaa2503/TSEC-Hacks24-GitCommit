@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const SignupPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    name: "",
+    email: "",
+    password: "",
   });
   const register = () => {
     console.log(data);
@@ -48,7 +48,7 @@ const SignupPage = () => {
             placeholder="Enter password"
           />
           <button
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-purple-600 text-white px-5 py-2 text-xl shadow-md hover:bg-purple-400 bg-purple-600 font-medium transition"
+            className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-green-600 text-white px-5 py-2 text-xl shadow-md hover:bg-green-400 bg-green-600 font-medium transition"
             onClick={() => register()}
           >
             <p>Signup</p>

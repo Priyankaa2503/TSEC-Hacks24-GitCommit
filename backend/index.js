@@ -70,6 +70,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3003, () => {
+server.listen(5002, () => {
   console.log("SERVER CHALU HAI BHAI");
 });

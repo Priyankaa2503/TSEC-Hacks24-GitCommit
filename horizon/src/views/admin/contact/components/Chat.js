@@ -31,6 +31,9 @@ function Chat({ socket, username, room }) {
     });
   }, [socket]);
 
+  console.log(MessageList);
+  // console.log(MessageList[0].author);
+
   return (
     <>
       {/* <div className="chat-window w-full">
@@ -108,7 +111,7 @@ function Chat({ socket, username, room }) {
                   class="h-full w-full"
                 />
               </div>
-              <div class="mt-2 text-sm font-semibold">Aminos Co.</div>
+              <div class="mt-2 text-sm font-semibold">{username}</div>
               <div class="text-xs text-gray-500">Lead UI/UX Designer</div>
               <div class="mt-3 flex flex-row items-center">
                 <div class="flex h-4 w-8 flex-col justify-center rounded-full bg-indigo-500">
@@ -176,12 +179,14 @@ function Chat({ socket, username, room }) {
                       return (
                         <div
                           className=""
-                          id={
-                            username === messagecontent.author ? "other" : "you"
-                          }
+                          
                         >
                           <div className="pb-8">
-                            <div className=" mr-3 text-sm bg-indigo-100 py-2 px-4 shadow text-right rounded-xl">
+                            <div
+                             id={
+                            username === "Mahek" ? "other" : "you"
+                          } 
+                          className=" mr-3  text-sm py-2 px-4 shadow text-right rounded-xl">
                               <p>{messagecontent.message}</p>
                             </div>
                             <div className="text-right pl-2 text-sm">

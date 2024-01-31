@@ -18,6 +18,7 @@ import {
   MdPerson,
   MdLock,
 } from "react-icons/md";
+import Budget from "views/admin/budget";
 
 const routes = [
   {
@@ -26,6 +27,13 @@ const routes = [
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
+  },
+  {
+    name: "Budget",
+    layout: "/admin",
+    path: "budget-tracking",
+    icon: <MdHome className="h-6 w-6" />,
+    component: <Budget />,
   },
   {
     name: "NFT Marketplace",

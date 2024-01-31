@@ -24,7 +24,6 @@ import Contact from "views/admin/contact";
 
 import PaintWall from "views/admin/PaintWall"
 
-
 const routes = [
   {
     name: "Main Dashboard",

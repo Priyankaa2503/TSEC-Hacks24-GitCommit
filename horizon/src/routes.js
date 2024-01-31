@@ -17,7 +17,9 @@ import {
   MdBarChart,
   MdPerson,
   MdLock,
+  MdChat,
 } from "react-icons/md";
+import Contact from "views/contact";
 
 const routes = [
   {
@@ -62,6 +64,13 @@ const routes = [
     path: "rtl",
     icon: <MdHome className="h-6 w-6" />,
     component: <RTLDefault />,
+  },
+  {
+    name: "Contact",
+    layout: "/admin",
+    path: "contact",
+    icon: <MdChat className="h-6 w-6" />,
+    component: <Contact />,
   },
 ];
 export default routes;

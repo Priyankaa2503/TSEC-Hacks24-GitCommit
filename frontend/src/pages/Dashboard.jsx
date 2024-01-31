@@ -28,9 +28,9 @@ const Dashboard = () => {
     <div className="flex w-full flex-col items-center justify-center py-2 min-h-screen">
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 background-gradient">
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl my-12">
-          Choose method
-        </h1>
+        {/* <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-gray-300 sm:text-7xl my-12">
+          OUR HOME
+        </h1> */}
         {/* <div class="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
                 <div class="p-4 h-full">
                     {!file &&
@@ -64,9 +64,15 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div> */}
-            <div>
-              <img src='https://img.freepik.com/premium-photo/floor-plan-house-top-view-3d-mockups-design-3d-highquality-mockups-generative-ai_913266-2662.jpg'/>
-            </div>
+            <div className='my-28'>
+              <img
+                  alt="Original photo of a room with roomGPT.io"
+                  src="home.jpg"
+                  className="w-full object-cover h-96 rounded-2xl"
+                  width={600}
+                  height={600}
+                />
+                </div>
         <div className="flex w-full gap-8 my-12">
           <div className="px-20 rounded-xl border-2 border-purple-600 bg-purple-100/10 shadow-xl hover:scale-105 hover:shadow-purple-500/50 transform duration-300 shadow-purple-500/25 py-12 flex flex-col items-center gap-8 w-full">
             <h1 className="text-4xl text-purple-100 font-semibold">Paint selected walls</h1>

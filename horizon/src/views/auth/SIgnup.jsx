@@ -69,6 +69,7 @@ const Blur = (props) => {
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const router = useNavigate();
   const handleSubmit = async (event) => {
     console.log("hi");
@@ -78,6 +79,7 @@ export default function SignupPage() {
       const res = await axios.post("http://localhost:5001/auth/register", {
         email: email,
         password: password,
+        name: name,
         isAdmin: false,
       });
       console.log(res);
@@ -225,6 +227,16 @@ export default function SignupPage() {
           <Box as={"form"} onSubmit={handleSubmit} mt={10}>
             <Stack spacing={4}>
               <Input
+                placeholder="name"
+                onChange={(e) => setName(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
+              <Input
                 placeholder="example@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}
                 bg={"gray.100"}
@@ -244,7 +256,7 @@ export default function SignupPage() {
                   color: "gray.500",
                 }}
               />
-             
+
               <Button
                 fontFamily={"heading"}
                 mt={8}
@@ -302,6 +314,16 @@ export default function SignupPage() {
           </Stack>
           <Box as={"form"} onSubmit={handleInterior} mt={10}>
             <Stack spacing={4}>
+              <Input
+                placeholder="name"
+                onChange={(e) => setName(e.target.value)}
+                bg={"gray.100"}
+                border={0}
+                color={"gray.500"}
+                _placeholder={{
+                  color: "gray.500",
+                }}
+              />
               <Input
                 placeholder="example@gmail.com"
                 onChange={(e) => setEmail(e.target.value)}

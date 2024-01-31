@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom'
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 import { useEffect, useState } from 'react';
 import { GrFormClose } from 'react-icons/gr';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
-import img1 from '../../assets/img/disc_room_green.png'
-// import img2 from '../../assets/bedroom_red.png';
-// import img3 from '../../assets/disc_room_green.png';
-// import img4 from '../../assets/disco_bright_green.png';
+import img1 from '../../assets/tv_room_painted.png';
+import img2 from '../../assets/bedroom_red.png';
+import img3 from '../../assets/disc_room_green.png';
+import img4 from '../../assets/disco_bright_green.png';
 
 const PaintWall = () => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const PaintWall = () => {
     let config = {
       method: 'get',
       maxBodyLength: Infinity,
-      url: 'http://localhost:5001/getPaints',
+      url: 'http://localhost:3001/getPaints',
       headers: {}
     };
 
@@ -71,7 +71,7 @@ const PaintWall = () => {
   return (
     <div className="min-h-screen">
       <ToastContainer />
-      {/* <Header /> */}
+      <Header />
       <main className="grid grid-cols-12 gap-8 w-full px-4 mb-24 background-gradient">
         <div className="flex flex-col col-span-4">
           <h1 className="font-display text-3xl font-bold tracking-normal text-gray-300 my-12">Advance Features</h1>
@@ -98,16 +98,16 @@ const PaintWall = () => {
             </div>
           ) : (
 
-            <div class="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
-              <div class="p-4 h-full">
+            <div className="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
+              <div className="p-4 h-full">
                 {!file && (
                   <div className="h-full">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <label class="flex cursor-pointer flex-col w-full h-full border-2 rounded-md border-dashed hover:border-purple-300">
-                        <div class="flex flex-col items-center justify-center h-full">
+                    <div className="flex items-center justify-center w-full h-full">
+                      <label className="flex cursor-pointer flex-col w-full h-full border-2 rounded-md border-dashed hover:border-purple-300">
+                        <div className="flex flex-col items-center justify-center h-full">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-12 h-12 text-gray-400 group-hover:text-gray-600"
+                            className="w-12 h-12 text-gray-400 group-hover:text-gray-600"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >
@@ -117,11 +117,11 @@ const PaintWall = () => {
                               clip-rule="evenodd"
                             />
                           </svg>
-                          <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                          <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Select a photo
                           </p>
                         </div>
-                        <input type="file" onChange={(e) => handleFile(e)} class="opacity-0" />
+                        <input type="file" onChange={(e) => handleFile(e)} className="opacity-0" />
                       </label>
                     </div>
                   </div>
@@ -164,7 +164,7 @@ const PaintWall = () => {
           </div>
         </div>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };

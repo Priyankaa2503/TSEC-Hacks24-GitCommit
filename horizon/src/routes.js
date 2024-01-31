@@ -18,7 +18,9 @@ import {
   MdPerson,
   MdLock,
   MdChat,
+  MdFormatPaint
 } from "react-icons/md";
+import { FaMoneyBillAlt } from "react-icons/fa";
 import Budget from "views/admin/budget";
 import Contact from "views/admin/contact";
 
@@ -45,7 +47,7 @@ const routes = [
     name: "Budget",
     layout: "/admin",
     path: "budget-tracking",
-    icon: <MdHome className="h-6 w-6" />,
+    icon: <FaMoneyBillAlt className="h-6 w-6" />,
     component: <Budget />,
   },
   // {
@@ -60,7 +62,7 @@ const routes = [
     name: "Paint Wall",
     layout: "/admin",
     path: "paintwall",
-    icon: <MdHome className="h-6 w-6" />,
+    icon: <MdFormatPaint className="h-6 w-6" />,
     component: <PaintWall />,
   },
   // {

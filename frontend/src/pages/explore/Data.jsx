@@ -1,4 +1,4 @@
-import galleryImg01 from '../../../assets/Home-01.jpg'
+import galleryImg01 from '../../../assets/chair-01.webp'
 import galleryImg02 from '../../../assets/Home-02.jpg'
 import galleryImg03 from '../../../assets/Home-03.jpg'
 import galleryImg04 from '../../../assets/Home-04.jpg'
@@ -8,17 +8,17 @@ import galleryImg07 from '../../../assets/Home-07.jpg'
 export const data = [
     {
         id :1,
-        name:'Margherita Pizza',
+        name:'Reclining Executive Footrest',
         category:'pizza',
-        image:galleryImg01,
-        price:'under 300',     
+        image:galleryImg01, 
+        link: 'https://www.amazon.com/EMIAH-Ergonomic-Reclining-Executive-Footrest/dp/B0BLBXP1WL'   
     },
     {
         id :2,
         name:' Farm house Pizza',
         category:'pizza',
         image:galleryImg02,
-        price:'under 200',     
+        link:'https://www.amazon.com/Posture-Ergonomic-FlipAdjust-Armrests-Executive/dp/B083SMBK6W/ref=sr_1_4_sspa?keywords=Sitting%2BChairs&sr=8-4-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1'     
     },
     {
         id :3,

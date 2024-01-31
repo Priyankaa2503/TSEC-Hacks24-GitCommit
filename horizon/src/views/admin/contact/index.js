@@ -11,9 +11,10 @@ const [username, setUsername] = useState("");
 const [room, setRoom] = useState("1");
 const [ShowChats, setShowChats] = useState(false);
 
+
 const handleLoadData = () => {
   const storedData = localStorage.getItem('name');
-  setUsername(storedData || 'Rachittt'); // Set data to storedData or an empty string if it's null
+  setUsername(storedData || ''); // Set data to storedData or an empty string if it's null
 };
 
 

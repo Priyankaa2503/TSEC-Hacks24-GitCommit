@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const token = localStorage.getItem('token');
-  const user = JSON.parse(localStorage.getItem('user'));
+  const token = localStorage.getItem("token");
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <header className="flex justify-between items-center w-full border-b py-6 sm:px-4 px-2 border-gray-500 gap-2">
       <Link to="/" className="flex space-x-2 items-center gap-2">
@@ -57,7 +57,7 @@ export default function Header() {
             <div>Explore</div>
           </Link>
           <Link
-            className="flex items-center gap-2 hover:text-purple-400 transition"
+            className="flex items-center gap-2 hover:text-green-400 transition"
             to="/profile"
           >
             <h1 className="font-semibold">{user.name}</h1>

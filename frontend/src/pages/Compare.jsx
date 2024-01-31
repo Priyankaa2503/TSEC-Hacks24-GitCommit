@@ -13,7 +13,7 @@ const Compare = () => {
         <h1 className="text-5xl font-bold">Compare Designs</h1>
         <CompareSlider original={orgRoom} restored={newRoom} />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

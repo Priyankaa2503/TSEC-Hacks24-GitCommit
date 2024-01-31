@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
   const login = () => {
     console.log(data);
@@ -46,7 +45,7 @@ const LoginPage = () => {
             placeholder="Enter password"
           />
           <button
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-purple-600 text-white px-5 py-2 text-xl shadow-md hover:bg-purple-400 bg-purple-600 font-medium transition"
+            className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-green-600 text-white px-5 py-2 text-xl shadow-md hover:bg-green-400 bg-green-600 font-medium transition"
             onClick={() => login()}
           >
             <p>Login</p>

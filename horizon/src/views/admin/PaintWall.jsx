@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 // import Header from '../components/Header';
 // import Footer from '../components/Footer';
-import { useEffect, useState } from 'react';
-import { GrFormClose } from 'react-icons/gr';
-import axios from 'axios';
-import { toast, ToastContainer } from 'react-toastify';
-import img1 from '../../assets/img/disc_room_green.png'
+import { useEffect, useState } from "react";
+import { GrFormClose } from "react-icons/gr";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import img1 from "../../assets/img/disc_room_green.png";
 // import img2 from '../../assets/bedroom_red.png';
 // import img3 from '../../assets/disc_room_green.png';
 // import img4 from '../../assets/disco_bright_green.png';
@@ -14,24 +14,29 @@ const PaintWall = () => {
   const navigate = useNavigate();
   const [file, setFile] = useState(null);
   const [paints, setPaints] = useState([]);
-  const [switch1, setSwitch1] = useState(true)
-  const [loading, setLoading] = useState(false)
+  const [switch1, setSwitch1] = useState(true);
+  const [loading, setLoading] = useState(false);
   const handleFile = (e) => {
     let file1 = e.target.files[0];
-    const fileType = file1['type'];
-    const validImageTypes = ['image/gif', 'image/jpeg', 'image/png', 'image/jpg'];
+    const fileType = file1["type"];
+    const validImageTypes = [
+      "image/gif",
+      "image/jpeg",
+      "image/png",
+      "image/jpg",
+    ];
     if (validImageTypes.includes(fileType)) {
       setFile(file1);
       console.log(file1);
-      localStorage.setItem('file', URL.createObjectURL(file1));
+      localStorage.setItem("file", URL.createObjectURL(file1));
     } else {
-      toast.warning('Please upload a valid image file (png or jpg)');
+      toast.warning("Please upload a valid image file (png or jpg)");
     }
   };
 
   const removeImage = () => {
     setFile(null);
-    localStorage.removeItem('file');
+    localStorage.removeItem("file");
   };
   // const getColor = () => {
   //   axios.get('http://localhost:3001/paints').then((res) => {
@@ -40,17 +45,19 @@ const PaintWall = () => {
   // };
   useEffect(() => {
     let config = {
-      method: 'get',
+      method: "get",
       maxBodyLength: Infinity,
-      url: 'http://localhost:5001/getPaints',
-      headers: {}
+      url: "http://localhost:5001/getPaints",
+      headers: {},
     };
 
     axios
       .request(config)
       .then((response) => {
         console.log(response.data);
-        let data = response.data.filter((item) => item.paintColorCategory === 'BLUE');
+        let data = response.data.filter(
+          (item) => item.paintColorCategory === "BLUE"
+        );
         setPaints(data.slice(1, 13));
       })
       .catch((error) => {
@@ -59,55 +66,58 @@ const PaintWall = () => {
   }, []);
 
   const paintWall = () => {
-    setLoading(true)
+    setLoading(true);
     setFile(null);
-    setSwitch1(false)
+    setSwitch1(false);
     setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 10000);
-    setFile(img1)
-  }
+    setFile(img1);
+  };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-y-hidden">
       <ToastContainer />
       {/* <Header /> */}
-      <main className="grid grid-cols-12 gap-8 w-full px-4 mb-24 background-gradient">
-        <div className="flex flex-col col-span-4">
-          <h1 className="font-display text-3xl font-bold tracking-normal text-gray-300 my-12">Advance Features</h1>
+      <main className="background-gradient mb-24 justify-center grid w-full grid-cols-12 gap-8 px-4">
+        <div className="col-span-4 flex flex-col">
+          <h1 className="font-display my-12 text-5xl font-bold tracking-normal text-gray-900">
+            Advance Features
+          </h1>
           <h1 className="text-2xl">Upgrade Items</h1>
-          <div className="flex mt-4 gap-3">
-            <input type="checkbox" className='accent-purple-500' />
+          <div className="mt-4 flex gap-3">
+            <input type="checkbox" className="accent-purple-500" />
             <h1>Furniture</h1>
           </div>
-          <div className="flex mt-4 gap-3">
-            <input type="checkbox" className='accent-purple-500' />
+          <div className="mt-4 flex gap-3">
+            <input type="checkbox" className="accent-purple-500" />
             <h1>Paintings</h1>
           </div>
-          <div className="flex mt-4 gap-3">
-            <input type="checkbox" className='accent-purple-500' />
+          <div className="mt-4 flex gap-3">
+            <input type="checkbox" className="accent-purple-500" />
             <h1>Tables</h1>
           </div>
         </div>
-        <div className="flex flex-col items-center col-span-4">
-          <h1 className="font-display text-5xl font-bold tracking-normal text-gray-300 my-12">Upload Image</h1>
+        <div className="col-span-8 flex flex-col items-center">
+          <h1 className="font-display my-12 text-5xl font-bold tracking-normal text-gray-900">
+            Upload Image
+          </h1>
           {loading ? (
-            <div className="flex flex-col gap-4 justify-center items-center h-full">
-              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-white"></div>
+            <div className="flex h-full flex-col items-center justify-center gap-4">
+              <div className="h-32 w-32 animate-spin rounded-full border-b-2 border-purple-600"></div>
               <h1>Generating Image</h1>
             </div>
           ) : (
-
-            <div class="rounded-lg hover:shadow-xl bg-purple-100/20 md:w-80 w-[360px] h-[320px]">
-              <div class="p-4 h-full">
+            <div class=" rounded-lg bg-purple-100/20 hover:shadow-xl ">
+              <div class="h-full p-4">
                 {!file && (
                   <div className="h-full">
-                    <div class="flex items-center justify-center w-full h-full">
-                      <label class="flex cursor-pointer flex-col w-full h-full border-2 rounded-md border-dashed hover:border-purple-300">
-                        <div class="flex flex-col items-center justify-center h-full">
+                    <div class="flex h-full w-full items-center justify-center">
+                      <label class="flex h-full w-full cursor-pointer flex-col rounded-md border-2 border-dashed hover:border-purple-300">
+                        <div class="mt-4 flex h-full flex-col items-center justify-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            class="w-12 h-12 text-gray-400 group-hover:text-gray-600"
+                            class="h-12 w-12 text-gray-400 group-hover:text-gray-600"
                             viewBox="0 0 20 20"
                             fill="currentColor"
                           >
@@ -117,23 +127,30 @@ const PaintWall = () => {
                               clip-rule="evenodd"
                             />
                           </svg>
-                          <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                          <p class="mt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                             Select a photo
                           </p>
                         </div>
-                        <input type="file" onChange={(e) => handleFile(e)} class="opacity-0" />
+                        <input
+                          type="file"
+                          onChange={(e) => handleFile(e)}
+                          class="opacity-0"
+                        />
                       </label>
                     </div>
                   </div>
                 )}
                 <div className="flex gap-2">
                   {file && (
-                    <div className="overflow-hidden relative">
+                    <div className="relative overflow-hidden">
                       <GrFormClose
                         onClick={() => removeImage()}
-                        className="absolute right-1 top-1 text-lg rounded-full bg-gray-200/25 hover:bg-gray-200/75 cursor-pointer"
+                        className="absolute right-1 top-1 cursor-pointer rounded-full bg-gray-200/25 text-lg hover:bg-gray-200/75"
                       />
-                      <img className="h-full w-80 rounded-md" src={switch1 ? URL.createObjectURL(file) : file} />
+                      <img
+                        className="h-full w-80 rounded-md"
+                        src={switch1 ? URL.createObjectURL(file) : file}
+                      />
                     </div>
                   )}
                 </div>
@@ -142,12 +159,12 @@ const PaintWall = () => {
           )}
           <button
             onClick={() => paintWall()}
-            className="flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-purple-600 text-white px-5 py-2 mt-4 text-sm shadow-md hover:bg-purple-400 bg-purple-600 font-medium transition"
+            className="mt-4 flex max-w-fit items-center justify-center space-x-2 rounded-lg border border-purple-600 bg-purple-600 px-5 py-2 text-sm font-medium text-white shadow-md transition hover:bg-purple-400"
           >
             Paint wall
           </button>
         </div>
-        <div className="flex flex-col col-span-4">
+        {/* <div className="flex flex-col col-span-4">
           <h1 className="font-display text-3xl font-bold tracking-normal text-gray-300 mt-12 mb-4">
             Recommended Colors
           </h1>
@@ -162,7 +179,7 @@ const PaintWall = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </main>
       {/* <Footer /> */}
     </div>

@@ -26,7 +26,7 @@ const Explore = () => {
     <div>
         <Header/>
         <div className='max-w-[1640px] m-auto px-4 py-12'>
-            <h1 className='text-orange-600 text-4xl font-bold text-center'>TOP RATED MENU</h1>
+            <h1 className='text-orange-600 text-4xl font-bold text-center'>EXPLORE</h1>
             <div className='flex flex-col lg:flex-row justify-between'>
                 <div>
                     <p className='font-bold text-slate-600 '>Filter Type</p>

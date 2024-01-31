@@ -37,6 +37,8 @@ const Budget = () => {
   });
 
   const [selectedTask, setSelectedTask] = useState(null);
+  const [totalBudget, setTotalBudget] = useState(50000);
+
   console.log(selectedTask);
   const handleTaskCardClick = (icon, title) => {
     setSelectedTask({ icon, title });
@@ -50,6 +52,7 @@ const Budget = () => {
     };
 
     const selectedTaskExpenses = taskExpenses[selectedTask.title.toLowerCase()];
+    setTotalBudget((prevTotalBudget) => prevTotalBudget - newExpense.amount);
 
     const updatedExpensesArray = [...selectedTaskExpenses, newExpense];
 
@@ -64,41 +67,50 @@ const Budget = () => {
 
   return (
     <div className="mt-10">
-    <div>
-      <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-11">
-        <div
-          className="card card-border xl:col-span-7 2xl:col-span-8"
-          role="presentation"
-        >
-          <div className="card-body">
-            <div className="flex items-center justify-between">
-              <h4 className="text-xl font-semibold">Cost Tracking</h4>
+      <div>
+        <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-11">
+          <div
+            className="card card-border xl:col-span-11 2xl:col-span-11"
+            role="presentation"
+          >
+            <div className="card-body flex items-center gap-10">
+              <h4 className="text-xl font-semibold">Total Budget</h4>
+              {totalBudget}
             </div>
-            <div className="chartRef">
-              <div style={{ minHeight: "395px" }}>
-                <BarGraph taskExpenses={taskExpenses}/>
+          </div>
+          <div
+            className="card card-border xl:col-span-7 2xl:col-span-8"
+            role="presentation"
+          >
+            <div className="card-body">
+              <div className="flex items-center justify-between">
+                <h4 className="text-xl font-semibold">Cost Tracking</h4>
+              </div>
+              <div className="chartRef">
+                <div style={{ minHeight: "395px" }}>
+                  <BarGraph taskExpenses={taskExpenses} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          className="card card-border xl:col-span-4 2xl:col-span-3"
-          role="presentation"
-        >
-          <div className="card-body">
-            <h4 className="text-xl font-semibold">Budget Allocated</h4>
+          <div
+            className="card card-border xl:col-span-4 2xl:col-span-3"
+            role="presentation"
+          >
+            <div className="card-body">
+              <h4 className="text-xl font-semibold">Budget Allocated</h4>
 
-            <div className="mt-20 flex items-center justify-center">
-              <div className="chartRef">
-                <div className=" mx-auto w-[250px]">
-                  <PieGraph />
+              <div className="mt-20 flex items-center justify-center">
+                <div className="chartRef">
+                  <div className=" mx-auto w-[250px]">
+                    <PieGraph taskExpenses={taskExpenses}/>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
       <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-5 2xl:grid-cols-5 3xl:grid-cols-5">
         <button
           onClick={() =>
@@ -220,19 +232,21 @@ const Budget = () => {
                 />
                 <table className="w-4/5 justify-between pl-6">
                   <thead className="">
-                    <tr className="flex py-2 justify-between">
+                    <tr className="flex justify-between py-2">
                       <div className="text-xl font-bold">Details</div>
                       <div className="text-xl font-bold">Amount</div>
                     </tr>
                   </thead>
-                  <hr className=""/>
+                  <hr className="" />
                   {taskExpenses[selectedTask.title.toLowerCase()].map(
                     (expense, index) => (
-                      <tr key={index} className="flex py-2 justify-between">
+                      <tr key={index} className="flex justify-between py-2">
                         <div className="text-md font-medium">
                           {expense.details}
                         </div>
-                        <div className="text-md font-medium">Rs {expense.amount}</div>
+                        <div className="text-md font-medium">
+                          Rs {expense.amount}
+                        </div>
                       </tr>
                     )
                   )}

@@ -2,9 +2,20 @@ import React, { useEffect } from 'react';
 import Chart from 'react-apexcharts';
 
 
-const PieGraph = () => {
+const PieGraph = ({taskExpenses}) => {
   // const mode = useSelector((state) => state.config.mode);
-  const series = [35,15,16,18,16];
+   // Calculate total expenses for each category
+   const categories = ["Flooring", "Painting", "Plumbing", "Wiring", "Furniture"];
+
+   const categoryExpenses = categories.map(category =>
+    taskExpenses[category.toLowerCase()]
+      .reduce((acc, expense) => acc + parseFloat(expense.amount), 0)
+  );
+
+  const totalExpenses = categoryExpenses.reduce((acc, expense) => acc + expense, 0);
+
+  // Calculate percentage of total expenses for each category
+  const series = categoryExpenses.map(expense => (expense / totalExpenses) * 100);
 
   const options = {
     chart: {

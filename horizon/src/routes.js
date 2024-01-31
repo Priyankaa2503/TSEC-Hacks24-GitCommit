@@ -23,7 +23,10 @@ import Budget from "views/admin/budget";
 import Contact from "views/admin/contact";
 
 import PaintWall from "views/admin/PaintWall"
+<<<<<<< HEAD
 // import Contact from "views/admin/contact";
+=======
+>>>>>>> e7356b0ec53be55629c527f8946e269fef842be5
 
 const routes = [
   {

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #17181c;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 400px) {
+  .background-gradient::before {
+    background: radial-gradient(20% 50% at 50% 50%, rgba(153, 71, 247, 0.376) 0%, rgba(37, 38, 44, 0) 100%);
+    z-index: -10;
+    content: '';
+    position: absolute;
+    inset: 0px;
+    transform: scale(1);
+    pointer-events: none;
+  }
+}

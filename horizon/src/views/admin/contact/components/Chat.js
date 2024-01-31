@@ -179,13 +179,16 @@ function Chat({ socket, username, room }) {
                       return (
                         <div
                           className=""
+                          id={
+                            MessageList.author === "Mahek" ? "other" : "you"
+                          } 
                           
                         >
                           <div className="pb-8">
                             <div
-                             id={
-                            username === "Mahek" ? "other" : "you"
-                          } 
+                          //    id={
+                          //   username === "Mahek" ? "other" : "you"
+                          // } 
                           className=" mr-3  text-sm py-2 px-4 shadow text-right rounded-xl">
                               <p>{messagecontent.message}</p>
                             </div>

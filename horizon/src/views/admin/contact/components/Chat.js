@@ -174,27 +174,23 @@ function Chat({ socket, username, room }) {
             <div class="flex h-full flex-auto flex-shrink-0 flex-col rounded-2xl bg-gray-100 p-4">
               <div class="mb-4 flex h-full flex-col overflow-x-auto">
                 <div class="flex h-full flex-col">
-                  <ScrollToBottom className="">
+                  <ScrollToBottom className="message-container">
                     {MessageList.map((messagecontent) => {
                       return (
                         <div
-                          className=""
-                          
-                        >
-                          <div className="pb-8">
-                            <div
-                             id={
-                            username === "Mahek" ? "other" : "you"
-                          } 
-                          className=" mr-3  text-sm py-2 px-4 shadow text-right rounded-xl">
-                              <p>{messagecontent.message}</p>
-                            </div>
-                            <div className="text-right pl-2 text-sm">
-                              <p id="time">{messagecontent.time}</p>
-                              <p id="author">{messagecontent.author}</p>
-                            </div>
-                          </div>
-                        </div>
+                  className="message"
+                  id={username === messagecontent.author ? "other" : "you"}
+                >
+                  <div>
+                    <div className="message-content">
+                      <p>{messagecontent.message}</p>
+                    </div>
+                    <div className="message-meta">
+                      <p id="time">{messagecontent.time}</p>
+                      <p id="author">{messagecontent.author}</p>
+                    </div>
+                  </div>
+                </div>
                       );
                     })}
                   </ScrollToBottom>

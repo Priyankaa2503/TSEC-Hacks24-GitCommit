@@ -29,7 +29,7 @@ import View from "views/admin/view-details";
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "My Dashboard",
     layout: "/admin",
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
@@ -72,13 +72,13 @@ const routes = [
   //   path: "data-tables",
   //   component: <DataTables />,
   // },
-  {
-    name: "Profile",
-    layout: "/admin",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
-  },
+  // {
+  //   name: "Profile",
+  //   layout: "/admin",
+  //   path: "profile",
+  //   icon: <MdPerson className="h-6 w-6" />,
+  //   component: <Profile />,
+  // },
   {
     name: "Sign In",
     layout: "/auth",

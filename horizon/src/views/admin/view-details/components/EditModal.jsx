@@ -28,9 +28,10 @@ export function EditModal({ id,data }) {
   const count = JSON.parse(localStorage.getItem("countData"));
 
   console.log(data)
-  const editCust = async (id) => {
+  const editCust = async () => {
     try {
-      const res = await axios.put(`http://localhost:5001/customer/${id}`, {
+      const res = await axios.put(`http://localhost:5001/products/${data._id}`, {
+        id: count.id,
         taskname: taskname,
         status: status,
         date: date,
@@ -109,12 +110,12 @@ export function EditModal({ id,data }) {
             <Button
               type="submit"
               onClick={(e) => {
-                editCust(e);
+                editCust();
                 onClose();
               }}
               variant="ghost"
             >
-              Add
+              Edit
             </Button>
           </ModalFooter>
         </ModalContent>

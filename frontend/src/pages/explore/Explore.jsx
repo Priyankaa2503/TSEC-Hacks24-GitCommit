@@ -74,7 +74,10 @@ const Explore = () => {
           <Masonry gutter="1rem">
             {foods.map((item, index) => (
               <>
+              {/* <a className="w-full" href={item.link}> */}
+
                 <img className="masonry_img" src={item.image} alt={item.name} />
+              {/* </a> */}
               </>
             ))}
           </Masonry>

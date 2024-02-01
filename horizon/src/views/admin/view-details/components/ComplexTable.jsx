@@ -154,15 +154,15 @@ const ComplexTable = (props) => {
                       data = (
                         <Link
                           to={`/admin/view-details/${cell.row.original._id}`}
-                          className="text-sm font-bold text-navy-700 dark:text-white"
+                          className="text-sm font-bold text-white"
                         >
                           <Button
                             fontFamily={"heading"}
                             w={"70%"}
-                            bgGradient="linear(to-r, blue.400,blue.700)"
+                            bg={"white"}
                             color={"white"}
                             _hover={{
-                              bgGradient: "linear(to-r, blue.400,blue.700)",
+                              bg: "blue.500",
                               boxShadow: "xl",
                             }}
                           >
@@ -183,19 +183,6 @@ const ComplexTable = (props) => {
                       data = (
                         <Button>
                           <EditModal data={cell.row.original}/>
-                          {/* <MdEdit
-                            onClick={() => {
-                              setOpen(true);
-                            }}
-                            size={18}
-                          />
-                          {open && (
-                            <EditModal
-                              id={cell.row.original._id}
-                              open={open}
-                              setOpen={setOpen}
-                            />
-                          )} */}
                         </Button>
                       );
                     }

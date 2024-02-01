@@ -104,7 +104,7 @@ const ComplexTable = (props) => {
         <Modall/>
       </div>
 
-      <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
+      <div className="mt-8 overflow-x-scroll ">
         <table {...getTableProps()} className="w-full">
           <thead>
             {headerGroups.map((headerGroup, index) => (
@@ -141,11 +141,11 @@ const ComplexTable = (props) => {
                       data = (
                         <div className="flex items-center gap-2">
                           <div className={`rounded-full text-xl`}>
-                            {cell.value === "Completed" ? (
+                            {cell.value === "completed" ? (
                               <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Pending" ? (
+                            ) : cell.value === "pending" ? (
                               <MdCancel className="text-red-500" />
-                            ) : cell.value === "Ongoing" ? (
+                            ) : cell.value === "ongoing" ? (
                               <MdOutlineError className="text-orange-500" />
                             ) : null}
                           </div>

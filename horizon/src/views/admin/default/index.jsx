@@ -28,22 +28,22 @@ const Dashboard = () => {
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Earnings"}
-          subtitle={"$340.5"}
+          subtitle={"₹340.5"}
         />
         <Widget
           icon={<IoDocuments className="h-6 w-6" />}
           title={"Spend this month"}
-          subtitle={"$642.39"}
+          subtitle={"₹642.39"}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
           title={"Sales"}
-          subtitle={"$574.34"}
+          subtitle={"₹574.34"}
         />
         <Widget
           icon={<MdDashboard className="h-6 w-6" />}
           title={"Your Balance"}
-          subtitle={"$1,000"}
+          subtitle={"₹1,000"}
         />
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
@@ -53,7 +53,7 @@ const Dashboard = () => {
         <Widget
           icon={<IoMdHome className="h-6 w-6" />}
           title={"Total Projects"}
-          subtitle={"$2433"}
+          subtitle={"₹2433"}
         />
       </div>
       {/* Complex Table , Task & Calendar */}
@@ -76,23 +76,8 @@ const Dashboard = () => {
 
       {/* Tables & Charts */}
 
-      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
-        {/* Check Table */}
-        <div>
-          <CheckTable
-            columnsData={columnsDataCheck}
-            tableData={tableDataCheck}
-          />
-        </div>
-
-        {/* Traffic chart & Pie Chart */}
-
-        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
-          <PieChartCard />
-        </div>
-
-        {/* Task chart & Calendar */}
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-1">
+      
 
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
           <TaskCard />

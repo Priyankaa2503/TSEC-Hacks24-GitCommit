@@ -39,9 +39,7 @@ export default function Auth() {
                         fill="#A3AED0"
                       />
                     </svg>
-                    <p className="ml-3 text-sm text-gray-600">
-                      Back to Dashboard
-                    </p>
+                  
                   </div>
                 </Link>
                 <Routes>

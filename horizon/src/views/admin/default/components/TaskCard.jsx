@@ -27,7 +27,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Landing Page Design
+              Flooring
             </p>
           </div>
           <div>
@@ -39,7 +39,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Mobile App Design
+              Plumbing
             </p>
           </div>
           <div>
@@ -51,7 +51,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Dashboard Builder
+              Painting
             </p>
           </div>
           <div>
@@ -63,7 +63,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Landing Page Design
+              Electrical
             </p>
           </div>
           <div>
@@ -75,7 +75,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Dashboard Builder
+                Furniture
             </p>
           </div>
           <div>

@@ -150,17 +150,17 @@ export const pieChartData = [63, 25, 12];
 
 export const barChartDataWeeklyRevenue = [
   {
-    name: "PRODUCT A",
+    name: "PROJECT A",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#6AD2Fa",
   },
   {
-    name: "PRODUCT B",
+    name: "PROJECT B",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#4318FF",
   },
   {
-    name: "PRODUCT C",
+    name: "PROJECT C",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#EFF4FB",
   },

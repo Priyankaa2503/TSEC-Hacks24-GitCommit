@@ -47,7 +47,7 @@ const PaintWall = () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "http://localhost:3001/getPaints",
+      url: "http://localhost:5001/getPaints",
       headers: {},
     };
 
@@ -80,7 +80,7 @@ const PaintWall = () => {
       <ToastContainer />
       <Header />
       <main className="grid grid-cols-12 gap-8 w-full px-4 mb-24 background-gradient">
-        <div className="flex flex-col col-span-4">
+        <div className="ml-12 flex flex-col col-span-6">
           <h1 className="font-display text-3xl font-bold tracking-normal text-gray-300 my-12">
             Advance Features
           </h1>
@@ -164,7 +164,7 @@ const PaintWall = () => {
             Paint wall
           </button>
         </div>
-        <div className="flex flex-col col-span-4">
+        {/* <div className="flex flex-col col-span-4">
           <h1 className="font-display text-3xl font-bold tracking-normal text-gray-300 mt-12 mb-4">
             Recommended Colors
           </h1>
@@ -188,7 +188,7 @@ const PaintWall = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </main>
       <Footer />
     </div>

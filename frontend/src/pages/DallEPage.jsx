@@ -3,6 +3,7 @@ import { Configuration, OpenAIApi } from 'openai';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 const DallEPage = () => {
   const [roomPurpose, setRoomPurpose] = useState('');
@@ -17,7 +18,7 @@ const DallEPage = () => {
   const [loading, setLoading] = useState(false);
 
   const configuration = new Configuration({
-    apiKey: import.meta.env.VITE_Open_AI_Key
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
@@ -38,10 +39,41 @@ const DallEPage = () => {
     setResult(res.data.data[0].url);
   };
 
+
+const generateImages = async () => {
+
+ const options = {
+   method: "GET",
+   url: "https://text-to-image7.p.rapidapi.com/",
+   params: {
+     prompt: `Generate an image of a ${roomPurpose} room that is ${roomSize} square feet with a ${colorScheme} color scheme and a ${roomStyle} style.
+      The room should contain ${furniture} and ${decor},
+      with ${lighting} lighting to create a good atmosphere.
+      The budget for the room design is ${budget}.
+      Please generate an image that meets these specifications.`,
+     batch_size: "1",
+     negative_prompt:
+       "ugly, duplicate, morbid, mutilated, [out of frame], extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, bad anatomy, bad proportions",
+   },
+   headers: {
+     "X-RapidAPI-Key": "0bb53d8ad5msh30838fe4c4d47f9p1a3900jsn67574c17f264",
+     "X-RapidAPI-Host": "text-to-image7.p.rapidapi.com",
+   },
+ };
+
+ try {
+   const response = await axios.request(options);
+   setResult(response.data.data[0]);
+   console.log(response.data);
+ } catch (error) {
+   console.error(error);
+ }
+}
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Handle form submission here
-    generateImage();
+    generateImages();
   };
 
   return (

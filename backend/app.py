@@ -8,6 +8,7 @@ import pandas as pd
 app = Flask(__name__)
 
 model = joblib.load('linear_regression_model.pkl')
+model = joblib.load('walls_data.pkl')
 
 @app.route('/predict', methods=['POST','GET'])
 def index():

@@ -10,7 +10,7 @@ import {
   Button,
   
 } from "@chakra-ui/react";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
 import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
 import { useMemo, useState } from "react";
 import Progress from "components/progress";
@@ -18,28 +18,30 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { GrAdd } from "react-icons/gr";
-import { Modall } from "./Modal";
+import { Modall } from "./Modall";
+import { EditModal } from "./EditModal";
+// import { Modall } from "./Modal";
 const ComplexTable = (props) => {
-  const { columnsData,count } = props;
+  const { columnsData, cust, id } = props;
   const [name,setName] = useState("");
-  const [cust,setCust] = useState([]);
-
-  const getCust = async () => {
+  const [open,setOpen] = useState(false);
+  // const [cust,setCust] = useState([]);
+  // const getCust = async () => {
     
-    try{
-      const res = await axios.get("http://localhost:5001/customer/");
-      console.log(res.data);
+  //   try{
+  //     const res = await axios.get("http://localhost:5001/customer/");
+  //     console.log(res.data);
       
-      setCust(res.data);
-    }
-    catch(err){
-      console.log(err);
-    }
+  //     setCust(res.data);
+  //   }
+  //   catch(err){
+  //     console.log(err);
+  //   }
    
-  };
+  // };
   const delCust = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5001/customer/${id}`);
+      const res = await axios.delete(`http://localhost:5001/products/${id}`);
       console.log(res.data);
       window.location.reload();
     } catch (err) {
@@ -47,28 +49,10 @@ const ComplexTable = (props) => {
     }
   };
 
-    const editCust = async (id) => {
-      try {
-        const res = await axios.put(`http://localhost:5001/customer/${id}`,
-        {
-          progress : count.count/count.total*100
-        });
-        console.log(res.data);
-        window.location.reload();
-      } catch (err) {
-        console.log(err);
-      }
-    };
 
-
-  useEffect(() => {
-    getCust();
-    console.log(count)
-  }, []);
-// useEffect(() => {
-//   editCust(count.id);
- 
-// }, [])
+  // useEffect(() => {
+  //   getCust();
+  // }, []);
 
 
   const columns = useMemo(() => columnsData, [columnsData]);
@@ -98,10 +82,10 @@ const ComplexTable = (props) => {
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Task List
+          PROGESS REPORT
         </div>
       
-        <Modall/>
+        <Modall id={id} />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
@@ -125,13 +109,13 @@ const ComplexTable = (props) => {
           </thead>
           <tbody {...getTableBodyProps()}>
             {page.map((row, index) => {
-              console.log(row);
+              // console.log(row);
               prepareRow(row);
               return (
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    if (cell.column.Header === "CUSTOMER NAME") {
+                    if (cell.column.Header === "TASK") {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
@@ -141,11 +125,11 @@ const ComplexTable = (props) => {
                       data = (
                         <div className="flex items-center gap-2">
                           <div className={`rounded-full text-xl`}>
-                            {cell.value === "Completed" ? (
+                            {cell.value === "completed" ? (
                               <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Pending" ? (
+                            ) : cell.value === "pending" ? (
                               <MdCancel className="text-red-500" />
-                            ) : cell.value === "Ongoing" ? (
+                            ) : cell.value === "ongoing" ? (
                               <MdOutlineError className="text-orange-500" />
                             ) : null}
                           </div>
@@ -193,6 +177,25 @@ const ComplexTable = (props) => {
                             onClick={() => delCust(cell.row.original._id)}
                             size={18}
                           />
+                        </Button>
+                      );
+                    } else if (cell.column.Header === "  ") {
+                      data = (
+                        <Button>
+                          <EditModal data={cell.row.original}/>
+                          {/* <MdEdit
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            size={18}
+                          />
+                          {open && (
+                            <EditModal
+                              id={cell.row.original._id}
+                              open={open}
+                              setOpen={setOpen}
+                            />
+                          )} */}
                         </Button>
                       );
                     }

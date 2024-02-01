@@ -14,6 +14,7 @@ import Compare from './pages/Compare';
 import DallEPage from './pages/DallEPage';
 import Progress from './pages/Progress';
 import Explore from './pages/explore/Explore';
+import Progresss from './pages/Progress';
 // import Explore from './pages/Explore';
 
 
@@ -31,7 +32,7 @@ const App = () => {
         <Route path="/paint-cost" element={<PaintCost />} />
         <Route path='/compare' element={<Compare />} />
         <Route path='/dallE' element={<DallEPage />} />
-        <Route path='/progress' element={<Progress/>}/>
+        <Route path='/progress' element={<Progresss/>}/>
         <Route path='/explore' element={<Explore/>}/>
       </Routes>
     </div>

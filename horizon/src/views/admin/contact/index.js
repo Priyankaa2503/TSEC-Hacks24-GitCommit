@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import io from "socket.io-client";
 import Chat from './components/Chat';
-const socket = io.connect("http://localhost:3003");
+const socket = io.connect("http://localhost:5002");
 
 const Contact = () => {
 

@@ -1,227 +1,181 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import avatar from "../../assets/avatar11.png";
 import banner from "../../assets/banner.png";
 import Card from "../components/card";
 import Header from "../components/Header";
+import axios from 'axios';
+import { columnsData } from "./variables/columns";
+import { Flex, Progress } from "@chakra-ui/react";
 
-const Progress = () => {
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable,
+} from "react-table";
+import PieChart from "../components/PieChart";
+
+const Progresss = () => {
+  
+
+    
+
+  const [task, setTask] = useState([]);
+  const [count, setCount] = useState(0);
+  const [total, setTotal] = useState(0);
+  // console.log(id);
+  const getTask = async () => {
+    try {
+      const res = await axios.get(
+        'http://localhost:5001/products/65ba7b3340c147cba08948c4'
+      );
+
+      res.data.progress = res.data.status;
+
+    
+      // console.log(res.data);
+
+      const updatedData = res.data.map((item) => ({
+        ...item,
+        progress:
+          item.status === "completed"
+            ? 100
+            : item.status === "ongoing"
+            ? 66
+            : 10,
+      }));
+
+      setTask(updatedData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getTask();
+    // console.log(count);
+  }, [count]);
+
+  console.log(task);
+
+  const columns = useMemo(() => columnsData, [columnsData]);
+  const data = useMemo(() => task, [task]);
+
+  const tableInstance = useTable(
+    {
+      columns,
+      data,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination
+  );
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    initialState,
+  } = tableInstance;
+  initialState.pageSize = 11;
   return (
     <>
       <Header />
-      <div className="grid grid-cols-3 gap-6 p-6">
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
+      <div className="h-full w-full'">
+        <div className="mt-10 w-full flex flex-col items-center r h-max p-5 rounded-lg shadow-lg">
+          <h2 className="text-6xl font-bold mb-5">Progress Chart</h2>
+          <PieChart progress={task} />
+        </div>
+        <div className="mt-8 w-full overflow-x-scroll xl:overflow-x-hidden">
+          <table
+            {...getTableProps()}
+            className="w-full"
+            variant="simple"
+            color="white"
+            mb="24px"
           >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
+            <thead>
+              {headerGroups.map((headerGroup, index) => (
+                <tr {...headerGroup.getHeaderGroupProps()} key={index}>
+                  {headerGroup.headers.map((column, index) => (
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      className="border-b border-gray-200 pr-16 pb-[10px] text-start dark:!border-navy-700"
+                      key={index}
+                    >
+                      <div className="text-xl font-bold tracking-wide text-white lg:text-lg">
+                        {column.render("Header")}
+                      </div>
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
 
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Flooring</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
-          >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
-
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Adela Parkson</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
-          >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
-
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Adela Parkson</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
-          >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
-
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Adela Parkson</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
-          >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
-
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Adela Parkson</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
-        <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
-          {/* Background and profile */}
-          <div
-            className="relative mt-1 flex h-64 w-full justify-center rounded-xl bg-cover"
-            style={{ backgroundImage: `url(${banner})` }}
-          >
-            {/* <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-            <img className="h-full w-full rounded-full" src={avatar} alt="" />
-          </div> */}
-          </div>
-
-          {/* Name and position */}
-          <div className="mt-4 flex flex-col items-center">
-            <h4 className="text-xl font-bold text-blue-700 ">Adela Parkson</h4>
-            <p className="text-base font-normal text-gray-600">
-              Product Manager
-            </p>
-          </div>
-
-          {/* Post followers */}
-          <div className="mt-4 mb-3 flex gap-4 md:!gap-14">
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">17</p>
-              <p className="text-sm font-normal text-gray-600">Posts</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">9.7K</p>
-              <p className="text-sm font-normal text-gray-600">Followers</p>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-2xl font-bold text-blue-700 ">434</p>
-              <p className="text-sm font-normal text-gray-600">Following</p>
-            </div>
-          </div>
-        </Card>
+            <tbody {...getTableBodyProps()}>
+              {page.map((row, index) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} key={index}>
+                    {row.cells.map((cell, index) => {
+                      let data = "";
+                      if (cell.column.Header === "TaskName") {
+                        data = (
+                          <div className="flex items-center gap-2">
+                            {/* <Checkbox /> */}
+                            <p className="text-base font-bold text-navy-700 dark:text-white">
+                              {cell.value}
+                            </p>
+                          </div>
+                        );
+                      } else if (cell.column.Header === "Status") {
+                        data = (
+                          <div className="flex items-center">
+                            <p className="text-base font-bold text-navy-700 dark:text-white">
+                              {cell.value}
+                            </p>
+                          </div>
+                        );
+                      } else if (cell.column.Header === "Progress") {
+                        data = (
+                          <div className="h-2 w-1/2 bg-gray-200 rounded-full">
+                            <div
+                              className="h-full text-center text-xs text-white bg-[#bc5090] rounded-full"
+                              style={{ width: `${cell.value}%` }}
+                            ></div>
+                          </div>
+                        );
+                      } else if (cell.column.Header === "DATE") {
+                        let dateObject = new Date(cell.value);
+                        let formattedDate =
+                          dateObject.toLocaleDateString("en-US"); // format: MM/DD/YYYY
+                        data = (
+                          <p className="text-base font-bold text-navy-700 dark:text-white">
+                            {formattedDate}
+                          </p>
+                        );
+                      }
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          key={index}
+                          className="pt-[14px] pb-[16px] sm:text-[14px]"
+                        >
+                          {data}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
 };
 
-export default Progress;
+export default Progresss;

@@ -14,7 +14,7 @@ export default function Header() {
           height={24}
         />
         <h1 className="sm:text-3xl text-xl font-light ml-2 tracking-tight ">
-          Dinter
+          ApnaGhar
         </h1>
       </Link>
       {token ? (

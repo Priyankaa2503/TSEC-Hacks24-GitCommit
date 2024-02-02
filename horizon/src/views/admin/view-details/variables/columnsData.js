@@ -23,6 +23,10 @@ export const columnsDataDevelopment = [
     Header: " ",
     accessor: "d",
   },
+  {
+    Header: "  ",
+    accessor: "dw",
+  },
 ];
 
 export const columnsDataCheck = [
@@ -32,8 +36,12 @@ export const columnsDataCheck = [
   },
 
   {
-    Header: "DATE",
+    Header: "Start Date",
     accessor: "createdAt",
+  },
+  {
+    Header: "End Date",
+    accessor: "",
   },
   {
     Header: "STATUS",
@@ -45,7 +53,7 @@ export const columnsDataCheck = [
   },
   {
     Header: "  ",
-    accessor: "e",
+    accessor: "dw",
   },
 ];
 
@@ -74,6 +82,10 @@ export const columnsDataColumns = [
     Header: " ",
     accessor: "d",
   },
+  {
+    Header: "  ",
+    accessor: "dw",
+  },
 ];
 
 export const columnsDataComplex = [
@@ -100,5 +112,9 @@ export const columnsDataComplex = [
   {
     Header: " ",
     accessor: "d",
+  },
+  {
+    Header: "  ",
+    accessor: "dw",
   },
 ];

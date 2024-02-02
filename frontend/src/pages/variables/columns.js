@@ -15,4 +15,8 @@ export const columnsData = [
     Header: "DATE",
     accessor: "date",
   },
+  {
+    Header: "Image",
+    accessor: "",
+  },
 ];

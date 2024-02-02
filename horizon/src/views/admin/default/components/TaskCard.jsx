@@ -27,7 +27,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Flooring
+              Acquire new Projects
             </p>
           </div>
           <div>
@@ -39,7 +39,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Plumbing
+              Speed up previous task
             </p>
           </div>
           <div>
@@ -51,7 +51,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Painting
+              Job recuritment
             </p>
           </div>
           <div>
@@ -63,7 +63,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-              Electrical
+              Get wholesalers onboard
             </p>
           </div>
           <div>
@@ -75,7 +75,7 @@ const TaskCard = () => {
           <div className="flex items-center justify-center gap-2">
             <Checkbox />
             <p className="text-base font-bold text-navy-700 dark:text-white">
-                Furniture
+                Explore Furnitures
             </p>
           </div>
           <div>

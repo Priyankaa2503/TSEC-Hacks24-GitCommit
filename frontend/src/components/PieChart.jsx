@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Chart from "react-apexcharts";
 
-const PieGraph = ({ progress }) => {
+const PieChart = ({ progress }) => {
   // const mode = useSelector((state) => state.config.mode);
   // Calculate total expenses for each category
   const categories = [
@@ -94,4 +94,4 @@ const PieGraph = ({ progress }) => {
   );
 };
 
-export default PieGraph;
+export default PieChart;

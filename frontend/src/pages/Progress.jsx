@@ -5,7 +5,8 @@ import Card from "../components/card";
 import Header from "../components/Header";
 import axios from 'axios';
 import { columnsData } from "./variables/columns";
-import { Flex, Progress } from "@chakra-ui/react";
+import { Button, Flex, Progress } from "@chakra-ui/react";
+import B01 from "../../assets/B-01.jpg";
 
 import {
   useGlobalFilter,
@@ -146,6 +147,15 @@ const Progresss = () => {
                               style={{ width: `${cell.value}%` }}
                             ></div>
                           </div>
+                        );
+                      } else if (cell.column.Header === "Image") {
+                        data = (
+                          <Button
+                            className="bg-purple-600 p-2 rounded-lg"
+                            onClick={() => window.open(B01, "_blank")}
+                          >
+                            View Image
+                          </Button>
                         );
                       } else if (cell.column.Header === "DATE") {
                         let dateObject = new Date(cell.value);

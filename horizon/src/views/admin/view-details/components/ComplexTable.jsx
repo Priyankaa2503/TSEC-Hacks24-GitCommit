@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { GrAdd } from "react-icons/gr";
 import { Modall } from "./Modall";
 import { EditModal } from "./EditModal";
+import Modalll from "./Modalll";
 // import { Modall } from "./Modal";
 const ComplexTable = (props) => {
   const { columnsData, cust, id } = props;
@@ -54,6 +55,8 @@ const ComplexTable = (props) => {
   //   getCust();
   // }, []);
 
+  console.log(cust);
+
 
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => cust, [cust]);
@@ -82,7 +85,7 @@ const ComplexTable = (props) => {
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          PROGESS REPORT
+          Progress Report of Rachit
         </div>
       
         <Modall id={id} />
@@ -138,7 +141,7 @@ const ComplexTable = (props) => {
                           </p>
                         </div>
                       );
-                    } else if (cell.column.Header === "DATE") {
+                    } else if (cell.column.Header === "Start Date") {
                       let dateObject = new Date(cell.value);
                       let formattedDate =
                         dateObject.toLocaleDateString("en-US"); // format: MM/DD/YYYY
@@ -146,6 +149,24 @@ const ComplexTable = (props) => {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {formattedDate}
+                        </p>
+                      );
+                    } else if (cell.column.Header === "End Date") {
+                      // let formattedDate = "22-10-24"
+
+                      data = (
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          {/* {formattedDate} */}
+                          22-10-24
+                        </p>
+                      );
+                    } else if (cell.column.Header === "  ") {
+                      // let formattedDate = "22-10-24"
+
+                      data = (
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          {/* {formattedDate} */}
+                          <Modalll />
                         </p>
                       );
                     } else if (cell.column.Header === "PROGRESS") {
@@ -182,7 +203,7 @@ const ComplexTable = (props) => {
                     } else if (cell.column.Header === "  ") {
                       data = (
                         <Button>
-                          <EditModal data={cell.row.original}/>
+                          <EditModal data={cell.row.original} />
                         </Button>
                       );
                     }
